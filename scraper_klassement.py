@@ -36,6 +36,96 @@ def fetch(url, retries=2, timeout=20):
     raise last_err
 
 
+DATE_TIME_RE = re.compile(r"(\d{2}/\d{2}/\d{4})\s+(\d{2}:\d{2})")
+
+
+def scrape_upcoming_matches(soup):
+    """Scrapt het blok 'Eerstvolgende wedstrijden' op een teampagina.
+
+    De site gebruikt (vermoedelijk) automatisch gegenereerde/gehashte CSS-klassen,
+    dus we vertrouwen niet op class-namen maar op stabiele content-kenmerken die
+    op elke teampagina hetzelfde patroon volgen:
+      - een kop met daarin de tekst "Eerstvolgende wedstrijden"
+      - per wedstrijd een sub-kop met datum + tijd, bv. "19/09/2026 18:00"
+      - twee <img alt="Home team logo"> / <img alt="Opposing team logo">, telkens
+        gevolgd door de teamnaam
+      - een link naar Google Maps (adres van de locatie)
+      - een link naar het "Digitaal wedstrijdformulier" (bevat "MatchDetail")
+    Als Basketbal Vlaanderen deze opbouw ooit wijzigt, geeft deze functie gewoon
+    een lege lijst terug (geen crash) — check dan de Action-logs.
+    """
+    heading = soup.find(
+        lambda tag: tag.name in ("h1", "h2", "h3", "h4")
+        and "eerstvolgende wedstrijden" in tag.get_text(strip=True).lower()
+    )
+    if not heading:
+        return []
+
+    matches = []
+    current = None
+
+    for el in heading.find_all_next():
+        if not getattr(el, "name", None):
+            continue
+
+        # Stop zodra de volgende hoofdsectie begint (bv. het klassement) of de
+        # "volledige kalender"-link voorbijkomt.
+        if el.name in ("h1", "h2"):
+            break
+        text = el.get_text(strip=True)
+        if el.name == "a" and "volledige kalender" in text.lower():
+            break
+
+        # Nieuwe wedstrijd-kaart: een sub-kop met datum + tijd.
+        if el.name in ("h3", "h4"):
+            m = DATE_TIME_RE.search(text)
+            if m:
+                if current:
+                    matches.append(current)
+                current = {
+                    "datum": m.group(1),
+                    "tijd": m.group(2),
+                    "thuisploeg": "",
+                    "uitploeg": "",
+                    "locatie": "",
+                    "locatie_url": "",
+                    "formulier_url": "",
+                }
+                continue
+
+        if current is None:
+            continue
+
+        if el.name == "img" and "team logo" in (el.get("alt") or "").lower():
+            naam = el.parent.get_text(strip=True) if el.parent else ""
+            if not current["thuisploeg"]:
+                current["thuisploeg"] = naam
+            elif not current["uitploeg"]:
+                current["uitploeg"] = naam
+            continue
+
+        if el.name == "a":
+            href = el.get("href") or ""
+            if href.startswith("https://www.google.com/maps/dir/") and not current["locatie"]:
+                current["locatie"] = text
+                current["locatie_url"] = href
+            elif "matchdetail" in href.lower() and not current["formulier_url"]:
+                current["formulier_url"] = href
+
+    if current:
+        matches.append(current)
+
+    # ISO-datum toevoegen zodat het front-end makkelijk kan sorteren/formatteren.
+    for wedstrijd in matches:
+        try:
+            dag, maand, jaar = wedstrijd["datum"].split("/")
+            wedstrijd["datetime_iso"] = f"{jaar}-{maand}-{dag}T{wedstrijd['tijd']}:00"
+        except ValueError:
+            wedstrijd["datetime_iso"] = None
+
+    return matches
+
+
 def get_team_links():
     """Haalt enkel de 11 ploeglinks van Niel op van de hoofdpagina."""
     response = fetch(START_URL)
@@ -62,20 +152,11 @@ def scrape_team_data(team_url):
     response = fetch(team_url)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    matches = []
-    standings = []
-
-    # 1. Wedstrijden filteren op Niel / Rupel Pirates
-    match_blocks = soup.find_all("div", class_=re.compile(r"match|game|fixture"))
-    for block in match_blocks:
-        lines = [line.strip() for line in block.get_text(separator="\n").split("\n") if line.strip()]
-        full_text = " ".join(lines)
-        
-        # Alleen toevoegen als de wedstrijd over Niel / Rupel Pirates gaat
-        if is_relevant(full_text):
-            matches.append(lines)
+    # 1. Eerstvolgende wedstrijden
+    matches = scrape_upcoming_matches(soup)
 
     # 2. Klassement scrapen
+    standings = []
     tables = soup.find_all("table")
     for table in tables:
         rows = table.find_all("tr")
