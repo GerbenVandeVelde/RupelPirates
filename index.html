@@ -665,9 +665,9 @@ function ballSvg(hue, big){
 /* data.json wordt om de 6 uur automatisch ververst door scraper_klassement.py
    (zie .github/workflows/update-klassement.yml) en hier client-side ingeladen.
    STANDINGS_KEY_MAP koppelt elke ploeg-id aan de exacte naam waaronder Basketbal
-   Vlaanderen de ploeg vermeldt (de sleutels van data.json). Klopt een koppeling niet
-   (bv. omdat Basketbal Vlaanderen een ploeg hernoemt), pas dan de mapping hieronder aan —
-   als fallback wordt automatisch op categorie (bv. "G12 B") gezocht. */
+   Vlaanderen de ploeg vermeldt (de sleutels van data.json). Wijzigt Basketbal Vlaanderen
+   ooit een ploegnaam, pas dan de mapping hieronder aan — als fallback wordt automatisch
+   op categorie (bv. "G12 B") gezocht. */
 const STANDINGS_KEY_MAP = {
   'g08-a': 'BBC Coveco Niel G08 A',
   'g10-a': 'BBC Coveco Niel G10 A',
@@ -679,8 +679,7 @@ const STANDINGS_KEY_MAP = {
   'j16-a': 'BBC Coveco Niel J16 A',
   'j18-a': 'BBC Coveco Niel J18 A',
   'hse-a': 'BBC Coveco Niel HSE A',
-  // LET OP — AANNAME: in data.json heet deze ploeg "BBC Coveco Niel HSE R" (geen "HSE B").
-  // Controleer of dit effectief de reserven-/B-ploeg is; pas anders deze regel aan.
+  // Basketbal Vlaanderen noemt deze ploeg "HSE R" i.p.v. "HSE B" — bevestigd.
   'hse-b': 'BBC Coveco Niel HSE R'
 };
 const KLASSEMENT_KEYWORDS = ['niel', 'rupel pirates', 'coveco'];
@@ -932,6 +931,48 @@ function newsCard(n){
   </a>`;
 }
 
+function matchRow(m, ownTeamNaam){
+  let day = '?', mon = '';
+  if(m.datetime_iso){
+    const d = new Date(m.datetime_iso);
+    if(!isNaN(d)){
+      day = d.toLocaleDateString('nl-BE', {day:'2-digit'});
+      mon = d.toLocaleDateString('nl-BE', {month:'short'}).toUpperCase();
+    }
+  }
+  const isHome = isOwnTeamRow(m.thuisploeg);
+  const tegenstander = isHome ? (m.uitploeg || '?') : (m.thuisploeg || '?');
+  const locatieHtml = m.locatie
+    ? (m.locatie_url ? `<a href="${esc(m.locatie_url)}" target="_blank" rel="noopener">${esc(m.locatie)}</a>` : esc(m.locatie))
+    : '';
+  const formulierHtml = m.formulier_url
+    ? `<a href="${esc(m.formulier_url)}" target="_blank" rel="noopener">Wedstrijdformulier</a>`
+    : '';
+  const metaParts = [m.tijd ? esc(m.tijd) + ' uur' : '', locatieHtml, formulierHtml].filter(Boolean);
+  return `<div class="event-row">
+    <div class="event-date-box"><b>${day}</b><span>${mon}</span></div>
+    <div class="event-info">
+      <h4>${esc(ownTeamNaam)} ${isHome ? '—' : '@'} ${esc(tegenstander)}</h4>
+      <div class="meta-line">${metaParts.join(' · ')}</div>
+    </div>
+    <span class="event-type type-match">${isHome ? 'Thuis' : 'Uit'}</span>
+  </div>`;
+}
+
+function renderMatchesBox(t){
+  const uid = 'matches-' + t.id;
+  loadStandings().then(() => {
+    const box = document.getElementById(uid);
+    if(!box) return; // gebruiker is al naar een andere pagina genavigeerd
+    const key = findStandingsKey(t);
+    const matches = key ? STANDINGS_DATA[key].matches : null;
+    box.innerHTML = (matches && matches.length)
+      ? matches.map(m => matchRow(m, t.naam)).join('')
+      : '<p>Momenteel geen geplande wedstrijden bekend voor deze ploeg — check binnenkort opnieuw.</p>';
+  });
+  return `<div id="${uid}"><p>Wedstrijden laden…</p></div>`;
+}
+
 function eventRow(e){
   const d = fmtDateShort(e.datum);
   const typeMap = {match:['type-match','Wedstrijd'], training:['type-training','Training'], club:['type-club','Clubactiviteit'], tournament:['type-tournament','Toernooi']};
@@ -1026,7 +1067,6 @@ function viewPloegen(){
 function viewPloegDetail(id){
   const t = TEAMS.find(x=>x.id===id);
   if(!t) return view404();
-  const teamEvents = EVENTS.filter(e=>e.team===id);
   return `
   <section class="hero" style="padding:50px 0 70px;">
     <div class="hero-bg"></div>
@@ -1092,7 +1132,7 @@ function viewPloegDetail(id){
             <span class="eyebrow"><span class="dot"></span>WEDSTRIJDKALENDER</span>
             <h2>Komende wedstrijden</h2>
           </div>
-          ${teamEvents.length? teamEvents.map(e=>eventRow(e)).join('') : '<p>Momenteel geen geplande wedstrijden bekend voor deze ploeg — check binnenkort opnieuw.</p>'}
+          ${renderMatchesBox(t)}
         </div>
         <div>
           <div class="section-head">
