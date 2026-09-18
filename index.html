@@ -661,61 +661,97 @@ function ballSvg(hue, big){
   </svg>`;
 }
 
-/* ------------ VBL Vlaanderen integration (mock-ready component) ------------ */
-/* Deze module is voorbereid om live data op te halen bij Basketbal Vlaanderen (VBL)
-   voor Rupel Pirates / Coveco BBC Niel. Vul VBL_CONFIG.endpoint in zodra een officiële
-   API- of data-feed beschikbaar is; tot dan toont het component representatieve
-   voorbeelddata zodat de opbouw van de pagina zichtbaar blijft. */
-const VBL_CONFIG = {
-  endpoint: '', // bv. 'https://api.basketbalvlaanderen.be/v1/teams/coveco-bbc-niel'
-  clubs: ['Rupel Pirates', 'Coveco BBC Niel']
+/* ------------ Klassement (Basketbal Vlaanderen, via data.json) ------------ */
+/* data.json wordt om de 6 uur automatisch ververst door scraper_klassement.py
+   (zie .github/workflows/update-klassement.yml) en hier client-side ingeladen.
+   STANDINGS_KEY_MAP koppelt elke ploeg-id aan de exacte naam waaronder Basketbal
+   Vlaanderen de ploeg vermeldt (de sleutels van data.json). Klopt een koppeling niet
+   (bv. omdat Basketbal Vlaanderen een ploeg hernoemt), pas dan de mapping hieronder aan —
+   als fallback wordt automatisch op categorie (bv. "G12 B") gezocht. */
+const STANDINGS_KEY_MAP = {
+  'g08-a': 'BBC Coveco Niel G08 A',
+  'g10-a': 'BBC Coveco Niel G10 A',
+  'g10-b': 'BBC Coveco Niel G10 B',
+  'g12-a': 'BBC Coveco Niel G12 A',
+  'g12-b': 'BBC Coveco Niel G12 B',
+  'g14-a': 'BBC Coveco Niel G14 A',
+  'g14-b': 'Rupel Pirates BBC Niel G14 B',
+  'j16-a': 'BBC Coveco Niel J16 A',
+  'j18-a': 'BBC Coveco Niel J18 A',
+  'hse-a': 'BBC Coveco Niel HSE A',
+  // LET OP — AANNAME: in data.json heet deze ploeg "BBC Coveco Niel HSE R" (geen "HSE B").
+  // Controleer of dit effectief de reserven-/B-ploeg is; pas anders deze regel aan.
+  'hse-b': 'BBC Coveco Niel HSE R'
 };
-async function fetchVBLStandings(teamId){
-  if(VBL_CONFIG.endpoint){
-    try{
-      const res = await fetch(`${VBL_CONFIG.endpoint}/standings/${teamId}`);
-      if(res.ok){ const data = await res.json(); return {live:true, rows:data}; }
-    }catch(e){ /* val terug op voorbeelddata */ }
+const KLASSEMENT_KEYWORDS = ['niel', 'rupel pirates', 'coveco'];
+
+let STANDINGS_DATA = null;
+let STANDINGS_PROMISE = null;
+function loadStandings(){
+  if(!STANDINGS_PROMISE){
+    STANDINGS_PROMISE = fetch('./data.json', {cache:'no-store'})
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { STANDINGS_DATA = d; return d; })
+      .catch(() => { STANDINGS_DATA = null; return null; });
   }
-  return {live:false, rows: MOCK_STANDINGS[teamId] || MOCK_STANDINGS.default};
+  return STANDINGS_PROMISE;
 }
-const MOCK_STANDINGS = {
-  'hse-a': [
-    {pos:1, team:'BBC Kontich', w:8, l:1, pnt:17},
-    {pos:2, team:'Rupel Pirates', w:7, l:2, pnt:16, self:true},
-    {pos:3, team:'Basket Boom', w:6, l:3, pnt:15},
-    {pos:4, team:'Wilrijk BBC', w:5, l:4, pnt:14},
-    {pos:5, team:'Basket Hemiksem', w:3, l:6, pnt:12}
-  ],
-  default: [
-    {pos:1, team:'Basket Boom', w:9, l:0, pnt:18},
-    {pos:2, team:'Rupel Pirates', w:7, l:2, pnt:16, self:true},
-    {pos:3, team:'Wilrijk BBC', w:6, l:3, pnt:15},
-    {pos:4, team:'BBC Kontich', w:4, l:5, pnt:13},
-    {pos:5, team:'Basket Hemiksem', w:1, l:8, pnt:10}
-  ]
-};
-function renderVBLWidget(teamId, teamNaam){
-  const uid = 'vbl-'+teamId;
-  setTimeout(async ()=>{
+
+function findStandingsKey(t){
+  if(!STANDINGS_DATA) return null;
+  const mapped = STANDINGS_KEY_MAP[t.id];
+  if(mapped && STANDINGS_DATA[mapped]) return mapped;
+  const m = t.naam.toUpperCase().match(/([A-Z]{1,3}\d{0,2})\s+([A-Z])$/);
+  if(m){
+    const suffix = m[0].replace(/\s+/g, ' ').trim();
+    const found = Object.keys(STANDINGS_DATA).find(k => k.toUpperCase().trim().endsWith(suffix));
+    if(found) return found;
+  }
+  return null;
+}
+
+function isOwnTeamRow(cell){
+  const low = (cell || '').toLowerCase();
+  return KLASSEMENT_KEYWORDS.some(k => low.includes(k));
+}
+
+function fmtDateTime(iso){
+  try{
+    return new Date(iso).toLocaleString('nl-BE', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'});
+  }catch(e){ return iso; }
+}
+
+function standingsTableHtml(rows){
+  if(!rows || rows.length < 2) return '<p>Nog geen klassement beschikbaar voor deze ploeg — check binnenkort opnieuw.</p>';
+  const [header, ...body] = rows;
+  return `<div class="table-wrap"><table>
+    <thead><tr>${header.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead>
+    <tbody>
+      ${body.map(r => `<tr class="${isOwnTeamRow(r[1]) ? 'highlight' : ''}">${r.map(c => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}
+    </tbody>
+  </table></div>`;
+}
+
+function renderStandingsBox(t){
+  const uid = 'standings-' + t.id;
+  loadStandings().then(() => {
     const box = document.getElementById(uid);
-    if(!box) return;
-    const {live, rows} = await fetchVBLStandings(teamId);
+    if(!box) return; // gebruiker is al naar een andere pagina genavigeerd
+    const key = findStandingsKey(t);
+    const rows = key ? STANDINGS_DATA[key].standings : null;
+    const hasData = rows && rows.length > 1;
+    const updated = STANDINGS_DATA && STANDINGS_DATA._meta && STANDINGS_DATA._meta.generated_at
+      ? fmtDateTime(STANDINGS_DATA._meta.generated_at) : null;
     box.innerHTML = `
       <div class="vbl-head">
-        <b>Live rangschikking — Basketbal Vlaanderen</b>
-        <span class="${live?'badge-live':'badge-mock'}">${live? '● Live data' : '● Voorbeelddata'}</span>
+        <b>Klassement — Basketbal Vlaanderen</b>
+        <span class="${hasData ? 'badge-live' : 'badge-mock'}">${hasData ? '● Actueel klassement' : '● Nog geen data'}</span>
       </div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>#</th><th>Ploeg</th><th>W</th><th>V</th><th>Pnt</th></tr></thead>
-        <tbody>
-          ${rows.map(r=>`<tr class="${r.self?'highlight':''}"><td>${r.pos}</td><td>${esc(r.team)}</td><td>${r.w}</td><td>${r.l}</td><td>${r.pnt}</td></tr>`).join('')}
-        </tbody>
-      </table></div>
-      <div class="vbl-note">Dit onderdeel is voorbereid om automatisch resultaten, rangschikkingen en ploegkernen op te halen van Basketbal Vlaanderen voor <strong>Rupel Pirates</strong> en <strong>Coveco BBC Niel</strong>. Zodra een officiële databron of API beschikbaar is, verschijnt hier live data in plaats van dit voorbeeld.</div>
+      ${standingsTableHtml(rows)}
+      <div class="vbl-note">Klassement wordt automatisch om de 6 uur opgehaald van Basketbal Vlaanderen voor <strong>Rupel Pirates / Coveco BBC Niel</strong>.${updated ? ' Laatst bijgewerkt: ' + updated + '.' : ''}</div>
     `;
-  }, 10);
-  return `<div class="vbl-box" id="${uid}"><div class="vbl-head"><b>Live rangschikking — Basketbal Vlaanderen</b><span class="badge-mock">● Laden…</span></div></div>`;
+  });
+  return `<div class="vbl-box" id="${uid}"><div class="vbl-head"><b>Klassement — Basketbal Vlaanderen</b><span class="badge-mock">● Laden…</span></div></div>`;
 }
 
 /* ------------ router ------------ */
@@ -1063,7 +1099,7 @@ function viewPloegDetail(id){
             <span class="eyebrow"><span class="dot"></span>BASKETBAL VLAANDEREN</span>
             <h2>Rangschikking</h2>
           </div>
-          ${renderVBLWidget(t.id, t.naam)}
+          ${renderStandingsBox(t)}
         </div>
       </div>
     </div>
@@ -1371,6 +1407,7 @@ document.addEventListener('keydown', (e)=>{
 window.addEventListener('hashchange', router);
 window.addEventListener('DOMContentLoaded', router);
 router();
+loadStandings();
 </script>
 </body>
 </html>
