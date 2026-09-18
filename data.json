@@ -1,7 +1,38 @@
 {
   "BBC Coveco Niel HSE A": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-hse-a",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "19/09/2026",
+        "tijd": "18:15",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Expohal, Frank Craeybecklaan 77, 2100 Deurne (Ant)",
+        "locatie_url": "https://www.google.com/maps/dir//Expohal, Frank Craeybecklaan 77, 2100 Deurne (Ant)",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279110ANHSE11AKJ&ID=Uitslag",
+        "datetime_iso": "2026-09-19T18:15:00"
+      },
+      {
+        "datum": "26/09/2026",
+        "tijd": "19:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Luysbekelaar, Luisbekelaar , 2140 Borgerhout",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Luysbekelaar, Luisbekelaar , 2140 Borgerhout",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279110ANHSE11AMJ&ID=Uitslag",
+        "datetime_iso": "2026-09-26T19:00:00"
+      },
+      {
+        "datum": "03/10/2026",
+        "tijd": "20:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal De Twee Ringen, Della Faillelaan 30, 2630 Aartselaar",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal De Twee Ringen, Della Faillelaan 30, 2630 Aartselaar",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279110ANHSE11AAJ&ID=Uitslag",
+        "datetime_iso": "2026-10-03T20:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -187,7 +218,38 @@
   },
   "BBC Coveco Niel HSE R": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-hse-r",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "19/09/2026",
+        "tijd": "18:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Buurtcentrum Cortina, Kerkstraat 68, 2060 Antwerpen",
+        "locatie_url": "https://www.google.com/maps/dir//Buurtcentrum Cortina, Kerkstraat 68, 2060 Antwerpen",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279110ANHSE41CKJ&ID=Uitslag",
+        "datetime_iso": "2026-09-19T18:00:00"
+      },
+      {
+        "datum": "27/09/2026",
+        "tijd": "16:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279110ANHSE41CJM&ID=Uitslag",
+        "datetime_iso": "2026-09-27T16:00:00"
+      },
+      {
+        "datum": "04/10/2026",
+        "tijd": "15:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijk Park Rumst, Vissersstraat , 2840 Rumst",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijk Park Rumst, Vissersstraat , 2840 Rumst",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279110ANHSE41CAJ&ID=Uitslag",
+        "datetime_iso": "2026-10-04T15:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -349,7 +411,38 @@
   },
   "BBC Coveco Niel G14 A": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g14-a",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "19/09/2026",
+        "tijd": "13:30",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Breeven, Barelstraat 111 b, 2880 Bornem",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Breeven, Barelstraat 111 b, 2880 Bornem",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441AEAF&ID=Uitslag",
+        "datetime_iso": "2026-09-19T13:30:00"
+      },
+      {
+        "datum": "26/09/2026",
+        "tijd": "15:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Rooienberg, Rooienberg 58, 2570 Duffel",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Rooienberg, Rooienberg 58, 2570 Duffel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441AECF&ID=Uitslag",
+        "datetime_iso": "2026-09-26T15:00:00"
+      },
+      {
+        "datum": "03/10/2026",
+        "tijd": "15:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441AEFB&ID=Uitslag",
+        "datetime_iso": "2026-10-03T15:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -439,7 +532,38 @@
   },
   "Rupel Pirates BBC Niel G14 B": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/rupel-pirates-bbc-niel-g14-b",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "20/09/2026",
+        "tijd": "10:45",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sportschuur Fort VIII, Hoofdfrontweg 9, 2660 Hoboken",
+        "locatie_url": "https://www.google.com/maps/dir//Sportschuur Fort VIII, Hoofdfrontweg 9, 2660 Hoboken",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441ADEB&ID=Uitslag",
+        "datetime_iso": "2026-09-20T10:45:00"
+      },
+      {
+        "datum": "26/09/2026",
+        "tijd": "11:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441ADBA&ID=Uitslag",
+        "datetime_iso": "2026-09-26T11:00:00"
+      },
+      {
+        "datum": "03/10/2026",
+        "tijd": "11:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Mariaburg, Annadreef 7, 2930 Brasschaat",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Mariaburg, Annadreef 7, 2930 Brasschaat",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441ADFB&ID=Uitslag",
+        "datetime_iso": "2026-10-03T11:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -517,7 +641,38 @@
   },
   "BBC Coveco Niel G12 A": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g12-a",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "20/09/2026",
+        "tijd": "15:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Berentrode, Grote Doelstraat 1, 2820 Bonheiden",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Berentrode, Grote Doelstraat 1, 2820 Bonheiden",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241AGEB&ID=Uitslag",
+        "datetime_iso": "2026-09-20T15:00:00"
+      },
+      {
+        "datum": "26/09/2026",
+        "tijd": "09:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241AGBG&ID=Uitslag",
+        "datetime_iso": "2026-09-26T09:00:00"
+      },
+      {
+        "datum": "04/10/2026",
+        "tijd": "09:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Appelaar, ,",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Appelaar, ,  ",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241AGCB&ID=Uitslag",
+        "datetime_iso": "2026-10-04T09:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -631,7 +786,38 @@
   },
   "BBC Coveco Niel G12 B": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g12-b",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "19/09/2026",
+        "tijd": "12:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal De Twee Ringen, Della Faillelaan 30, 2630 Aartselaar",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal De Twee Ringen, Della Faillelaan 30, 2630 Aartselaar",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241NEB&ID=Uitslag",
+        "datetime_iso": "2026-09-19T12:00:00"
+      },
+      {
+        "datum": "26/09/2026",
+        "tijd": "11:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241NBG&ID=Uitslag",
+        "datetime_iso": "2026-09-26T11:00:00"
+      },
+      {
+        "datum": "04/10/2026",
+        "tijd": "13:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Braxhall, Kapelstraat 143, 2850 Boom",
+        "locatie_url": "https://www.google.com/maps/dir//Braxhall, Kapelstraat 143, 2850 Boom",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241NCB&ID=Uitslag",
+        "datetime_iso": "2026-10-04T13:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -733,7 +919,38 @@
   },
   "BBC Coveco Niel G10 B": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g10-b",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "26/09/2026",
+        "tijd": "09:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1041TBA&ID=Uitslag",
+        "datetime_iso": "2026-09-26T09:00:00"
+      },
+      {
+        "datum": "04/10/2026",
+        "tijd": "11:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sportschuur De Griene, Kattenberg 1, 2627 Schelle",
+        "locatie_url": "https://www.google.com/maps/dir//Sportschuur De Griene, Kattenberg 1, 2627 Schelle",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1041TFB&ID=Uitslag",
+        "datetime_iso": "2026-10-04T11:00:00"
+      },
+      {
+        "datum": "10/10/2026",
+        "tijd": "09:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1041TBC&ID=Uitslag",
+        "datetime_iso": "2026-10-10T09:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -823,7 +1040,38 @@
   },
   "BBC Coveco Niel G10 A": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g10-a",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "26/09/2026",
+        "tijd": "15:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1041AGBA&ID=Uitslag",
+        "datetime_iso": "2026-09-26T15:00:00"
+      },
+      {
+        "datum": "04/10/2026",
+        "tijd": "12:30",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Sint Rita, Rompelei 29, 2550 Kontich",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Sint Rita, Rompelei 29, 2550 Kontich",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1041AGFB&ID=Uitslag",
+        "datetime_iso": "2026-10-04T12:30:00"
+      },
+      {
+        "datum": "10/10/2026",
+        "tijd": "15:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1041AGBC&ID=Uitslag",
+        "datetime_iso": "2026-10-10T15:00:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -913,7 +1161,38 @@
   },
   "BBC Coveco Niel J18 A": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-j18-a",
-    "matches": [],
+    "matches": [
+      {
+        "datum": "19/09/2026",
+        "tijd": "13:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170INJ1841FDC&ID=Uitslag",
+        "datetime_iso": "2026-09-19T13:00:00"
+      },
+      {
+        "datum": "26/09/2026",
+        "tijd": "13:00",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "locatie_url": "https://www.google.com/maps/dir//Gemeentelijke Sporthal Niel, Landbouwstraat 145, 2845 Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170INJ1841FDE&ID=Uitslag",
+        "datetime_iso": "2026-09-26T13:00:00"
+      },
+      {
+        "datum": "04/10/2026",
+        "tijd": "16:30",
+        "thuisploeg": "",
+        "uitploeg": "",
+        "locatie": "Sporthal Zwijndrecht, Fortlaan 10, 2070 Zwijndrecht",
+        "locatie_url": "https://www.google.com/maps/dir//Sporthal Zwijndrecht, Fortlaan 10, 2070 Zwijndrecht",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170INJ1841FAD&ID=Uitslag",
+        "datetime_iso": "2026-10-04T16:30:00"
+      }
+    ],
     "standings": [
       [
         "Nr.",
@@ -1002,7 +1281,7 @@
     ]
   },
   "_meta": {
-    "generated_at": "2026-09-18T17:16:32+00:00",
+    "generated_at": "2026-09-18T17:27:51+00:00",
     "team_count": 9,
     "failed_teams": [
       "BBC Coveco Niel J16 A",
