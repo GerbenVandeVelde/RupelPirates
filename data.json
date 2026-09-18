@@ -347,11 +347,6 @@
       ]
     ]
   },
-  "BBC Coveco Niel J16 A": {
-    "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-j16-a",
-    "matches": [],
-    "standings": []
-  },
   "BBC Coveco Niel G14 A": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g14-a",
     "matches": [],
@@ -916,11 +911,6 @@
       ]
     ]
   },
-  "BBC Coveco Niel G08 A": {
-    "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g08-a",
-    "matches": [],
-    "standings": []
-  },
   "BBC Coveco Niel J18 A": {
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-j18-a",
     "matches": [],
@@ -1009,6 +999,14 @@
         "25",
         "81"
       ]
+    ]
+  },
+  "_meta": {
+    "generated_at": "2026-09-18T17:16:32+00:00",
+    "team_count": 9,
+    "failed_teams": [
+      "BBC Coveco Niel J16 A",
+      "BBC Coveco Niel G08 A"
     ]
   }
 }
