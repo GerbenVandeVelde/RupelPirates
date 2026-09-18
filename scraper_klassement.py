@@ -1,13 +1,22 @@
 import json
 import re
 import sys
+import urllib.parse
 from datetime import datetime, timezone
+
+try:
+    from zoneinfo import ZoneInfo
+    BRUSSELS_TZ = ZoneInfo("Europe/Amsterdam")
+except Exception:  # pragma: no cover - fallback als tzdata ontbreekt
+    BRUSSELS_TZ = None
 
 import requests
 from bs4 import BeautifulSoup
 
 BASE_URL = "https://www.basketbal.vlaanderen"
 START_URL = f"{BASE_URL}/resultaten/bbc-coveco-niel"
+ICAL_BASE_URL = "https://vblcal.wisseq.eu/vblcalsync/calsync.aspx"
+MAX_UPCOMING_MATCHES = 8
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -37,23 +46,121 @@ def fetch(url, retries=2, timeout=20):
 
 
 DATE_TIME_RE = re.compile(r"(\d{2}/\d{2}/\d{4})\s+(\d{2}:\d{2})")
+ICAL_GUID_RE = re.compile(r"calsync\.aspx\?guid=([A-Za-z0-9]+)")
 
 
-def scrape_upcoming_matches(soup):
-    """Scrapt het blok 'Eerstvolgende wedstrijden' op een teampagina.
+def extract_ical_guid(html_text):
+    """De teampagina bevat een link naar een publieke iCal-kalender
+    (dezelfde die bezoekers aan Google Agenda/iCal kunnen toevoegen),
+    bv. .../calsync.aspx?guid=BVBL1321HSE002. Dat guid halen we eruit."""
+    m = ICAL_GUID_RE.search(html_text)
+    return m.group(1) if m else None
 
-    De site gebruikt (vermoedelijk) automatisch gegenereerde/gehashte CSS-klassen,
-    dus we vertrouwen niet op class-namen maar op stabiele content-kenmerken die
-    op elke teampagina hetzelfde patroon volgen:
-      - een kop met daarin de tekst "Eerstvolgende wedstrijden"
-      - per wedstrijd een sub-kop met datum + tijd, bv. "19/09/2026 18:00"
-      - twee <img alt="Home team logo"> / <img alt="Opposing team logo">, telkens
-        gevolgd door de teamnaam
-      - een link naar Google Maps (adres van de locatie)
-      - een link naar het "Digitaal wedstrijdformulier" (bevat "MatchDetail")
-    Als Basketbal Vlaanderen deze opbouw ooit wijzigt, geeft deze functie gewoon
-    een lege lijst terug (geen crash) — check dan de Action-logs.
-    """
+
+def unfold_ical_lines(text):
+    """RFC5545: een regel die met een spatie/tab begint, is een vervolg van de vorige regel."""
+    lines = text.splitlines()
+    unfolded = []
+    for line in lines:
+        if line.startswith((" ", "\t")) and unfolded:
+            unfolded[-1] += line[1:]
+        else:
+            unfolded.append(line)
+    return unfolded
+
+
+def _parse_ical_datetime(value):
+    value = value.strip()
+    for fmt in ("%Y%m%dT%H%M%S", "%Y%m%dT%H%M%SZ", "%Y%m%d"):
+        try:
+            return datetime.strptime(value, fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def parse_ical_matches(ics_text):
+    """Parst een .ics-kalender (Basketbal Vlaanderen / Wisseq) naar een lijst wedstrijden.
+    Elke SUMMARY-regel heeft het formaat 'Thuisploeg - Uitploeg'."""
+    lines = unfold_ical_lines(ics_text)
+    raw_events = []
+    current = None
+    for line in lines:
+        if line.startswith("BEGIN:VEVENT"):
+            current = {}
+        elif line.startswith("END:VEVENT"):
+            if current is not None:
+                raw_events.append(current)
+            current = None
+        elif current is not None:
+            if line.startswith("DTSTART"):
+                current["dt"] = _parse_ical_datetime(line.split(":", 1)[-1])
+            elif line.startswith("SUMMARY"):
+                current["summary"] = line.split(":", 1)[-1].strip()
+            elif line.startswith("LOCATION"):
+                current["location"] = line.split(":", 1)[-1].strip().replace("\\,", ",").replace("\\;", ";")
+            elif line.startswith("URL"):
+                current["url"] = line.split(":", 1)[-1].strip()
+
+    matches = []
+    for ev in raw_events:
+        dt = ev.get("dt")
+        if not dt:
+            continue
+        summary = ev.get("summary", "")
+        if " - " in summary:
+            thuis, uit = summary.split(" - ", 1)
+        else:
+            thuis, uit = summary, ""
+        locatie = ev.get("location", "")
+        locatie_url = (
+            "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(locatie)
+            if locatie else ""
+        )
+        matches.append({
+            "datum": dt.strftime("%d/%m/%Y"),
+            "tijd": dt.strftime("%H:%M"),
+            "thuisploeg": thuis.strip(),
+            "uitploeg": uit.strip(),
+            "locatie": locatie,
+            "locatie_url": locatie_url,
+            "formulier_url": ev.get("url", ""),
+            "datetime_iso": dt.isoformat(),
+            "_dt": dt,
+        })
+    return matches
+
+
+def scrape_upcoming_matches_ical(html_text):
+    """Haalt de volledige seizoenskalender van een ploeg op via haar iCal-feed
+    en filtert op wedstrijden die nog moeten gespeeld worden. Retourneert None
+    (i.p.v. een lege lijst) als er geen guid gevonden werd of de feed niet
+    opgehaald/geparsed kon worden, zodat scrape_team_data() dan op de oudere
+    HTML-methode kan terugvallen."""
+    guid = extract_ical_guid(html_text)
+    if not guid:
+        return None
+    try:
+        resp = fetch(f"{ICAL_BASE_URL}?guid={guid}")
+    except requests.RequestException:
+        return None
+
+    matches = parse_ical_matches(resp.text)
+    if not matches:
+        return None
+
+    now = datetime.now(BRUSSELS_TZ).replace(tzinfo=None) if BRUSSELS_TZ else datetime.now()
+    upcoming = sorted((m for m in matches if m["_dt"] >= now), key=lambda m: m["_dt"])
+    for m in upcoming:
+        del m["_dt"]
+    return upcoming[:MAX_UPCOMING_MATCHES]
+
+
+def scrape_upcoming_matches_html(soup):
+    """Oudere fallback-methode: scrapt het blok 'Eerstvolgende wedstrijden' rechtstreeks
+    uit de HTML. Wordt enkel gebruikt als de iCal-feed niet beschikbaar/leesbaar is.
+    LET OP: kon de teamnamen niet betrouwbaar uit de HTML halen (thuisploeg/uitploeg
+    blijven dan leeg) — dit is bewust alleen een terugvaloptie voor datum/locatie/link."""
     heading = soup.find(
         lambda tag: tag.name in ("h1", "h2", "h3", "h4")
         and "eerstvolgende wedstrijden" in tag.get_text(strip=True).lower()
@@ -68,15 +175,12 @@ def scrape_upcoming_matches(soup):
         if not getattr(el, "name", None):
             continue
 
-        # Stop zodra de volgende hoofdsectie begint (bv. het klassement) of de
-        # "volledige kalender"-link voorbijkomt.
         if el.name in ("h1", "h2"):
             break
         text = el.get_text(strip=True)
         if el.name == "a" and "volledige kalender" in text.lower():
             break
 
-        # Nieuwe wedstrijd-kaart: een sub-kop met datum + tijd.
         if el.name in ("h3", "h4"):
             m = DATE_TIME_RE.search(text)
             if m:
@@ -115,7 +219,6 @@ def scrape_upcoming_matches(soup):
     if current:
         matches.append(current)
 
-    # ISO-datum toevoegen zodat het front-end makkelijk kan sorteren/formatteren.
     for wedstrijd in matches:
         try:
             dag, maand, jaar = wedstrijd["datum"].split("/")
@@ -152,8 +255,11 @@ def scrape_team_data(team_url):
     response = fetch(team_url)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # 1. Eerstvolgende wedstrijden
-    matches = scrape_upcoming_matches(soup)
+    # 1. Eerstvolgende wedstrijden — bij voorkeur via de iCal-feed (betrouwbaarder,
+    # geeft ook meteen de correcte thuis-/uitploeg), met de HTML-scrape als fallback.
+    matches = scrape_upcoming_matches_ical(response.text)
+    if matches is None:
+        matches = scrape_upcoming_matches_html(soup)
 
     # 2. Klassement scrapen
     standings = []
