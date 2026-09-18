@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rupel Pirates Basketball Club</title>
+<meta name="description" content="Officiële website van Rupel Pirates Basketball Club (BBC Niel) — ploegen, kalender, nieuws en meer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#111111;
+  --ink-soft:#1d1d1d;
+  --yellow:#FFD100;
+  --yellow-deep:#E6BC00;
+  --white:#ffffff;
+  --off-white:#FAFAF8;
+  --paper:#F4F3EF;
+  --gray-700:#3d3d3d;
+  --gray-500:#6b6b6b;
+  --gray-300:#d8d6d0;
+  --gray-200:#e9e7e1;
+  --line:#e4e2db;
+  --shadow: 0 10px 30px rgba(17,17,17,0.08);
+  --shadow-lg: 0 20px 50px rgba(17,17,17,0.16);
+  --radius-s: 10px;
+  --radius-m: 16px;
+  --radius-l: 26px;
+  --maxw: 1180px;
+  --bg: var(--white);
+  --bg-alt: var(--off-white);
+  --text: var(--ink);
+  --text-soft: var(--gray-500);
+  --card-bg: var(--white);
+  --nav-bg: var(--ink);
+  color-scheme: light;
+}
+:root:not([data-theme="light"]) {
+  @media (prefers-color-scheme: dark) {
+    --bg:#151513;
+    --bg-alt:#1b1b18;
+    --text:#f3f1ea;
+    --text-soft:#b9b6ac;
+    --card-bg:#1f1f1c;
+    --line:#33322c;
+    --gray-300:#3a3933;
+    --gray-200:#2a2a26;
+    --shadow: 0 10px 30px rgba(0,0,0,0.4);
+    --shadow-lg: 0 20px 50px rgba(0,0,0,0.55);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151513;
+  --bg-alt:#1b1b18;
+  --text:#f3f1ea;
+  --text-soft:#b9b6ac;
+  --card-bg:#1f1f1c;
+  --line:#33322c;
+  --gray-300:#3a3933;
+  --gray-200:#2a2a26;
+  --shadow: 0 10px 30px rgba(0,0,0,0.4);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,0.55);
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+h1,h2,h3,h4{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;letter-spacing:0.01em;line-height:1.02;margin:0;font-weight:400;}
+h1{font-size:clamp(2.6rem,7vw,4.6rem);}
+h2{font-size:clamp(2rem,4.6vw,3rem);}
+h3{font-size:clamp(1.4rem,2.6vw,1.8rem);}
+p{margin:0 0 1em;color:var(--text-soft);max-width:62ch;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Inter',sans-serif;font-weight:700;font-size:0.8rem;
+  color:var(--ink);
+}
+:root[data-theme="dark"] .eyebrow, .dark-mode-only-eyebrow{color:var(--yellow);}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 3px rgba(255,209,0,0.25);}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 26px;border-radius:100px;border:2px solid transparent;
+  font-weight:700;font-size:0.95rem;font-family:'Inter',sans-serif;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--yellow);color:var(--ink);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,209,0,0.35);}
+.btn-dark{background:var(--ink);color:var(--yellow);}
+:root[data-theme="dark"] .btn-dark{background:var(--yellow);color:var(--ink);}
+.btn-dark:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
+.btn-outline{background:transparent;border-color:currentColor;color:var(--ink);}
+:root[data-theme="dark"] .btn-outline{color:var(--text);}
+.btn-outline:hover{background:var(--ink);color:var(--yellow);border-color:var(--ink);}
+.btn-sm{padding:9px 18px;font-size:0.82rem;}
+
+/* ---------- Nav ---------- */
+header.site-header{
+  position:sticky;top:0;z-index:100;background:var(--nav-bg);
+  border-bottom:3px solid var(--yellow);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand img{width:44px;height:44px;border-radius:50%;background:#fff;padding:2px;}
+.brand-name{font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.35rem;letter-spacing:0.03em;line-height:1;}
+.brand-name small{display:block;font-family:'Inter',sans-serif;font-size:0.6rem;color:var(--yellow);letter-spacing:0.14em;font-weight:700;margin-top:2px;}
+nav.main-nav{display:none;}
+nav.main-nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0;}
+nav.main-nav a{
+  display:block;padding:10px 14px;color:#e9e7e1;font-weight:600;font-size:0.92rem;
+  border-radius:8px;transition:background .15s ease, color .15s ease;position:relative;
+}
+nav.main-nav a:hover{background:rgba(255,255,255,0.08);color:#fff;}
+nav.main-nav a.active{color:var(--ink);background:var(--yellow);}
+.nav-cta{display:none;}
+.hamburger{
+  display:flex;flex-direction:column;justify-content:center;gap:5px;
+  width:42px;height:42px;background:transparent;border:none;padding:0;
+}
+.hamburger span{display:block;height:2px;width:24px;background:#fff;border-radius:2px;transition:transform .25s ease, opacity .25s ease;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{
+  display:none;background:var(--ink);border-top:1px solid #2a2a2a;
+  position:absolute;left:0;right:0;top:72px;max-height:0;overflow:hidden;transition:max-height .3s ease;
+}
+.mobile-menu.open{display:block;max-height:600px;}
+.mobile-menu ul{list-style:none;margin:0;padding:10px 22px 18px;}
+.mobile-menu a{display:block;padding:13px 4px;color:#eee;font-weight:600;border-bottom:1px solid #262626;}
+.mobile-menu a.active{color:var(--yellow);}
+.mobile-menu .btn{margin-top:14px;width:100%;}
+
+@media(min-width:960px){
+  nav.main-nav{display:block;}
+  .nav-cta{display:flex;gap:10px;}
+  .hamburger{display:none;}
+  .mobile-menu{display:none !important;}
+}
+
+/* ---------- Sections generic ---------- */
+section{padding:88px 0;}
+.section-alt{background:var(--bg-alt);}
+.section-dark{background:var(--ink);color:#fff;}
+.section-dark p{color:#c9c7c0;}
+.section-head{margin-bottom:44px;max-width:640px;}
+.section-head .eyebrow{margin-bottom:14px;}
+.section-top-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:40px;}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;background:var(--ink);color:#fff;overflow:hidden;
+  padding:64px 0 90px;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(circle at 85% 18%, rgba(255,209,0,0.18), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(255,209,0,0.10), transparent 40%);
+}
+.hero-net{
+  position:absolute;right:-80px;top:-60px;width:520px;height:520px;opacity:0.16;z-index:0;
+}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr;gap:38px;align-items:center;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;background:rgba(255,209,0,0.12);
+  border:1px solid rgba(255,209,0,0.4);color:var(--yellow);padding:7px 14px;border-radius:100px;
+  font-weight:700;font-size:0.78rem;margin-bottom:22px;
+}
+.hero h1{color:#fff;margin-bottom:16px;}
+.hero h1 .accent{color:var(--yellow);}
+.hero .sub{color:#d8d6cd;font-size:1.15rem;max-width:46ch;margin-bottom:30px;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;}
+.hero-logo-wrap{display:flex;justify-content:center;}
+.hero-logo{
+  width:220px;height:220px;border-radius:50%;background:#fff;padding:14px;box-shadow:var(--shadow-lg);
+  border:4px solid var(--yellow);
+}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.14);padding-top:26px;max-width:520px;}
+.hero-stats div{padding-right:18px;}
+.hero-stats b{display:block;font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--yellow);}
+.hero-stats span{font-size:0.78rem;color:#b9b6ac;font-weight:600;}
+@media(min-width:860px){
+  .hero-inner{grid-template-columns:1.15fr 0.85fr;}
+  .hero-logo{width:280px;height:280px;}
+}
+
+/* ---------- Cards ---------- */
+.grid{display:grid;gap:26px;}
+.grid-3{grid-template-columns:repeat(1,1fr);}
+.grid-4{grid-template-columns:repeat(1,1fr);}
+@media(min-width:680px){.grid-3{grid-template-columns:repeat(2,1fr);} .grid-4{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr);} .grid-4{grid-template-columns:repeat(4,1fr);}}
+
+.card{
+  background:var(--card-bg);border-radius:var(--radius-m);box-shadow:var(--shadow);
+  overflow:hidden;transition:transform .22s ease, box-shadow .22s ease;border:1px solid var(--line);
+  display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+
+/* News card */
+.news-card .media{height:170px;position:relative;overflow:hidden;}
+.news-card .media .tag{
+  position:absolute;top:12px;left:12px;background:var(--yellow);color:var(--ink);
+  font-weight:800;font-size:0.7rem;padding:5px 11px;border-radius:100px;letter-spacing:.02em;
+}
+.news-card .body{padding:22px 22px 24px;flex:1;display:flex;flex-direction:column;}
+.news-card .date{font-size:0.78rem;color:var(--text-soft);font-weight:600;margin-bottom:8px;}
+.news-card h3{margin-bottom:10px;font-family:'Inter',sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:0;line-height:1.25;}
+.news-card p{font-size:0.92rem;flex:1;}
+.read-more{font-weight:700;font-size:0.85rem;display:inline-flex;align-items:center;gap:6px;margin-top:auto;color:var(--ink);}
+:root[data-theme="dark"] .read-more{color:var(--yellow);}
+.read-more svg{transition:transform .18s ease;}
+.card:hover .read-more svg{transform:translateX(4px);}
+
+/* Team card */
+.team-card{cursor:pointer;position:relative;}
+.team-card .top{
+  background:var(--ink);color:#fff;padding:26px 22px 60px;position:relative;overflow:hidden;
+}
+.team-card .top::after{
+  content:"";position:absolute;right:-30px;bottom:-40px;width:130px;height:130px;border-radius:50%;
+  background:rgba(255,209,0,0.14);
+}
+.team-card .number{
+  font-family:'Bebas Neue',sans-serif;font-size:3.4rem;color:var(--yellow);line-height:1;opacity:.95;position:relative;z-index:1;
+}
+.team-card .cat{font-weight:700;font-size:0.78rem;color:#cfcdc4;letter-spacing:.04em;position:relative;z-index:1;}
+.team-card .bottom{
+  background:var(--yellow);margin:-38px 16px 0;border-radius:var(--radius-s);padding:16px 18px;position:relative;z-index:2;
+  box-shadow:0 8px 18px rgba(0,0,0,0.12);
+}
+.team-card .bottom h3{font-family:'Inter',sans-serif;font-weight:800;font-size:1.1rem;color:var(--ink);}
+.team-card .info{padding:16px 22px 22px;}
+.team-card .info p{font-size:0.88rem;margin-bottom:10px;}
+.team-card .meta{display:flex;flex-wrap:wrap;gap:8px;font-size:0.76rem;color:var(--text-soft);font-weight:600;}
+.team-card .meta span{background:var(--bg-alt);padding:4px 10px;border-radius:100px;border:1px solid var(--line);}
+
+/* Sponsor grid */
+.sponsor-tier-title{display:flex;align-items:center;gap:14px;margin:44px 0 20px;}
+.sponsor-tier-title h3{font-family:'Inter',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.02em;}
+.sponsor-tier-title .line{flex:1;height:1px;background:var(--line);}
+.sponsor-logo{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-s);
+  display:flex;align-items:center;justify-content:center;padding:22px 16px;min-height:110px;
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--text-soft);text-align:center;
+  transition:box-shadow .2s ease, transform .2s ease, color .2s ease;
+}
+.sponsor-logo:hover{box-shadow:var(--shadow);transform:translateY(-3px);color:var(--ink);}
+:root[data-theme="dark"] .sponsor-logo:hover{color:var(--yellow);}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);color:#cfcdc4;padding:64px 0 26px;}
+.footer-grid{display:grid;gap:38px;grid-template-columns:1fr;margin-bottom:44px;}
+@media(min-width:760px){.footer-grid{grid-template-columns:1.3fr 1fr 1fr 1fr;}}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.footer-brand img{width:40px;height:40px;border-radius:50%;background:#fff;padding:3px;}
+.footer-brand b{font-family:'Bebas Neue',sans-serif;color:#fff;font-size:1.2rem;}
+footer h4{font-family:'Inter',sans-serif;font-weight:800;color:#fff;font-size:0.85rem;letter-spacing:.04em;margin-bottom:16px;}
+footer ul{list-style:none;margin:0;padding:0;}
+footer li{margin-bottom:10px;}
+footer a{font-size:0.9rem;color:#b9b6ac;transition:color .15s ease;}
+footer a:hover{color:var(--yellow);}
+.social-row{display:flex;gap:10px;margin-top:16px;}
+.social-row a{
+  width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;transition:background .15s ease, transform .15s ease;
+}
+.social-row a:hover{background:var(--yellow);transform:translateY(-3px);}
+.social-row a:hover svg{fill:var(--ink);}
+.social-row svg{width:17px;height:17px;fill:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:0.8rem;color:#8f8d85;}
+
+/* ---------- Misc components ---------- */
+.pill{
+  display:inline-block;padding:6px 13px;border-radius:100px;background:var(--bg-alt);border:1px solid var(--line);
+  font-size:0.78rem;font-weight:700;color:var(--text-soft);
+}
+.divider-flags{display:flex;height:14px;overflow:hidden;}
+.divider-flags span{flex:1;height:0;border-left:22px solid transparent;border-right:22px solid transparent;border-top:14px solid var(--ink);}
+.divider-flags span:nth-child(odd){border-top-color:var(--yellow);}
+
+.badge-live{
+  display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:800;color:#178a3d;
+  background:#e6f6ec;padding:4px 10px;border-radius:100px;
+}
+.badge-mock{
+  display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:800;color:#8a6d00;
+  background:#fff5cf;padding:4px 10px;border-radius:100px;
+}
+:root[data-theme="dark"] .badge-mock{background:#3a3115;color:var(--yellow);}
+:root[data-theme="dark"] .badge-live{background:#123a22;color:#5fd98a;}
+
+table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+table th, table td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);}
+table th{font-size:0.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-soft);font-weight:800;}
+table tr.highlight{background:var(--bg-alt);}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-s);}
+.table-wrap table{min-width:520px;}
+
+.breadcrumb{font-size:0.85rem;color:var(--text-soft);margin-bottom:18px;font-weight:600;}
+.breadcrumb a:hover{color:var(--ink);}
+:root[data-theme="dark"] .breadcrumb a:hover{color:var(--yellow);}
+
+.form-field{margin-bottom:18px;}
+.form-field label{display:block;font-weight:700;font-size:0.85rem;margin-bottom:7px;}
+.form-field input, .form-field select, .form-field textarea{
+  width:100%;padding:13px 14px;border-radius:10px;border:1.5px solid var(--line);
+  background:var(--bg-alt);color:var(--text);font-family:inherit;font-size:0.95rem;transition:border-color .15s ease;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus{
+  outline:none;border-color:var(--yellow);background:var(--card-bg);
+}
+.form-field textarea{resize:vertical;min-height:120px;}
+
+.contact-info-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px;}
+.contact-info-item .icon{
+  width:42px;height:42px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.contact-info-item .icon svg{width:19px;height:19px;fill:var(--ink);}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+@media(min-width:680px){.gallery-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:980px){.gallery-grid{grid-template-columns:repeat(4,1fr);}}
+.gallery-item{border-radius:var(--radius-s);overflow:hidden;cursor:pointer;position:relative;aspect-ratio:4/3;box-shadow:var(--shadow);transition:transform .2s ease;}
+.gallery-item:hover{transform:scale(1.02);}
+.gallery-item svg{width:100%;height:100%;display:block;}
+.gallery-item .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:10px 12px;font-size:0.74rem;font-weight:700;color:#fff;
+  background:linear-gradient(0deg, rgba(0,0,0,0.65), transparent);
+}
+.lightbox{
+  position:fixed;inset:0;background:rgba(10,10,10,0.92);z-index:1000;display:none;align-items:center;justify-content:center;padding:30px;
+}
+.lightbox.open{display:flex;}
+.lightbox-inner{max-width:720px;width:100%;}
+.lightbox-inner svg{width:100%;border-radius:var(--radius-m);}
+.lightbox-close{
+  position:absolute;top:22px;right:26px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.12);
+  border:none;color:#fff;font-size:1.4rem;display:flex;align-items:center;justify-content:center;
+}
+.lightbox-cap{color:#e9e7e1;text-align:center;margin-top:14px;font-weight:600;}
+
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.filter-chip{
+  padding:9px 16px;border-radius:100px;border:1.5px solid var(--line);background:var(--card-bg);
+  font-weight:700;font-size:0.82rem;color:var(--text-soft);transition:all .15s ease;
+}
+.filter-chip.active{background:var(--ink);color:var(--yellow);border-color:var(--ink);}
+
+.event-row{
+  display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;
+  padding:18px 20px;border-radius:var(--radius-s);background:var(--card-bg);border:1px solid var(--line);margin-bottom:12px;
+}
+.event-date-box{
+  background:var(--ink);color:#fff;border-radius:10px;text-align:center;padding:8px 0;
+}
+.event-date-box b{display:block;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--yellow);line-height:1;}
+.event-date-box span{font-size:0.62rem;text-transform:uppercase;font-weight:700;letter-spacing:.04em;}
+.event-info h4{font-family:'Inter',sans-serif;font-weight:800;font-size:1rem;margin-bottom:4px;}
+.event-info .meta-line{font-size:0.82rem;color:var(--text-soft);}
+.event-type{font-size:0.7rem;font-weight:800;padding:4px 10px;border-radius:100px;white-space:nowrap;}
+.type-match{background:#fff5cf;color:#8a6d00;}
+.type-training{background:#e7f0ff;color:#1e56a8;}
+.type-club{background:#ffe6ee;color:#a8265c;}
+.type-tournament{background:#e6f6ec;color:#178a3d;}
+:root[data-theme="dark"] .type-match{background:#3a3115;color:var(--yellow);}
+:root[data-theme="dark"] .type-training{background:#12233a;color:#7fb0ff;}
+:root[data-theme="dark"] .type-club{background:#3a1224;color:#ff8fb6;}
+:root[data-theme="dark"] .type-tournament{background:#123a22;color:#5fd98a;}
+@media(max-width:600px){
+  .event-row{grid-template-columns:54px 1fr;}
+  .event-type{grid-column:1/-1;justify-self:start;margin-top:6px;}
+}
+
+.player-card{text-align:center;padding:18px 10px;border-radius:var(--radius-s);background:var(--card-bg);border:1px solid var(--line);transition:transform .2s ease, box-shadow .2s ease;}
+.player-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.player-avatar{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 10px;background:var(--ink);color:var(--yellow);
+  display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;border:3px solid var(--yellow);
+}
+.player-card b{display:block;font-size:0.86rem;font-weight:800;}
+.player-card span{font-size:0.74rem;color:var(--text-soft);font-weight:600;}
+
+.stat-box{background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-m);padding:26px;box-shadow:var(--shadow);}
+
+.board-card{display:flex;gap:14px;align-items:center;background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-s);padding:16px;}
+.board-avatar{width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;flex-shrink:0;border:2px solid var(--yellow);}
+.board-card b{display:block;font-size:0.92rem;}
+.board-card span{font-size:0.78rem;color:var(--text-soft);}
+
+.value-card{padding:26px;border-radius:var(--radius-m);background:var(--card-bg);border:1px solid var(--line);}
+.value-card .icn{width:46px;height:46px;border-radius:12px;background:var(--yellow);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.value-card .icn svg{width:22px;height:22px;fill:var(--ink);}
+
+.reveal{opacity:0;transform:translateY(16px);animation:revealIn .7s ease forwards;}
+@keyframes revealIn{to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){
+  .reveal{animation:none;opacity:1;transform:none;}
+  html{scroll-behavior:auto;}
+  *{transition-duration:0.01ms !important;}
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+  outline:3px solid var(--yellow);outline-offset:2px;
+}
+
+.cta-band{
+  background:var(--ink);border-radius:var(--radius-l);padding:52px 30px;text-align:center;color:#fff;
+  position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:"";position:absolute;left:-60px;top:-60px;width:200px;height:200px;background:rgba(255,209,0,0.12);border-radius:50%;
+}
+.cta-band h2{color:#fff;margin-bottom:14px;}
+.cta-band p{color:#c9c7c0;max-width:52ch;margin:0 auto 28px;}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+.vbl-box{
+  border:1.5px dashed var(--gray-300);border-radius:var(--radius-m);padding:22px;background:var(--bg-alt);margin-top:8px;
+}
+.vbl-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.vbl-head b{font-family:'Inter',sans-serif;font-weight:800;font-size:0.92rem;}
+.vbl-note{font-size:0.8rem;color:var(--text-soft);margin-top:12px;background:var(--card-bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+
+.error-text{color:#c0392b;font-size:0.8rem;font-weight:700;margin-top:6px;display:none;}
+.form-field.invalid input, .form-field.invalid textarea{border-color:#c0392b;}
+.form-field.invalid .error-text{display:block;}
+.success-box{
+  background:#e6f6ec;border:1.5px solid #178a3d;color:#12602c;padding:18px 20px;border-radius:var(--radius-s);
+  font-weight:700;display:none;margin-bottom:20px;
+}
+.success-box.show{display:block;}
+
+.skip-link{position:absolute;left:-999px;top:0;background:var(--yellow);color:var(--ink);padding:12px 18px;font-weight:800;z-index:2000;border-radius:0 0 10px 0;}
+.skip-link:focus{left:0;}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Ga naar inhoud</a>
+
+<header class="site-header">
+  <div class="wrap nav-inner">
+    <a href="#/" class="brand" aria-label="Rupel Pirates - Home">
+      <img src="data:image/jpeg;base64,LOGO_BASE64_PLACEHOLDER" alt="Logo Rupel Pirates">
+      <span class="brand-name">RUPEL PIRATES<small>BBC NIEL — BASKETBALCLUB</small></span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Hoofdnavigatie">
+      <ul id="navList"></ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="#/contact" class="btn btn-primary btn-sm">Lid worden</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu openen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul id="mobileNavList"></ul>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="data:image/jpeg;base64,LOGO_BASE64_PLACEHOLDER" alt="">
+          <b>RUPEL PIRATES</b>
+        </div>
+        <p style="max-width:34ch;">Basketbalclub Rupel Pirates (BBC Niel) — passie, teamwork en basketbal voor jong en oud, sinds jaar en dag actief in Niel en de Rupelstreek.</p>
+        <div class="social-row" aria-label="Sociale media">
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7C16.2 3.6 15.1 3.5 13.9 3.5c-2.6 0-4.4 1.6-4.4 4.5v2.9H6.8V14h2.7v7h4z"/></svg></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 3.2c2.4 0 2.7 0 3.6.05 2.3.1 3.4 1.2 3.5 3.5.05.9.05 1.15.05 3.35s0 2.45-.05 3.35c-.1 2.3-1.2 3.4-3.5 3.5-.9.05-1.15.05-3.6.05s-2.7 0-3.6-.05c-2.3-.1-3.4-1.2-3.5-3.5C4.85 12.65 4.85 12.4 4.85 10.2s0-2.45.05-3.35c.1-2.3 1.2-3.4 3.5-3.5.9-.05 1.15-.05 3.6-.05zM12 1.5c-2.5 0-2.8 0-3.7.05C4.9 1.7 3.2 3.4 3.05 6.8 3 7.7 3 8 3 10.2s0 2.5.05 3.4c.15 3.4 1.85 5.1 5.25 5.25.9.05 1.2.05 3.7.05s2.8 0 3.7-.05c3.4-.15 5.1-1.85 5.25-5.25.05-.9.05-1.2.05-3.4s0-2.5-.05-3.4C20.8 3.4 19.1 1.7 15.7 1.55c-.9-.05-1.2-.05-3.7-.05zm0 5.4a5.4 5.4 0 100 10.8 5.4 5.4 0 000-10.8zm0 8.9a3.5 3.5 0 110-7 3.5 3.5 0 010 7zm5.6-9.1a1.26 1.26 0 100 2.52 1.26 1.26 0 000-2.52z"/></svg></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22 12s0-3.2-.4-4.7a2.7 2.7 0 00-1.9-1.9C18.2 5 12 5 12 5s-6.2 0-7.7.4A2.7 2.7 0 002.4 7.3C2 8.8 2 12 2 12s0 3.2.4 4.7a2.7 2.7 0 001.9 1.9C5.8 19 12 19 12 19s6.2 0 7.7-.4a2.7 2.7 0 001.9-1.9C22 15.2 22 12 22 12zM10 15.3V8.7l5.6 3.3-5.6 3.3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>SNELLE LINKS</h4>
+        <ul>
+          <li><a href="#/">Home</a></li>
+          <li><a href="#/nieuws">Nieuws</a></li>
+          <li><a href="#/ploegen">Ploegen</a></li>
+          <li><a href="#/kalender">Kalender</a></li>
+          <li><a href="#/fotos">Foto's</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>CLUB</h4>
+        <ul>
+          <li><a href="#/sponsors">Sponsors</a></li>
+          <li><a href="#/over-ons">Over ons</a></li>
+          <li><a href="#/contact">Contact</a></li>
+          <li><a href="#/contact">Lid worden</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>CONTACT</h4>
+        <ul>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=Sporthal+Niel+Rupel+Pirates" target="_blank" rel="noopener">Sportlaan 1, 2845 Niel</a></li>
+          <li><a href="mailto:info@rupelpirates.be">info@rupelpirates.be</a></li>
+          <li><a href="tel:+3238880000">03 888 00 00</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Rupel Pirates Basketball Club — BBC Niel. Alle rechten voorbehouden.</span>
+      <span>Trots aangesloten bij Basketbal Vlaanderen</span>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Sluiten">&times;</button>
+  <div class="lightbox-inner">
+    <div id="lightboxContent"></div>
+    <div class="lightbox-cap" id="lightboxCap"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   RUPEL PIRATES — data & app
+   ========================================================= */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const ICONS = {
+  arrow:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>',
+  mail:'<svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 12l8-5.99V6H4zm16 2.24l-8 6-8-6V18h16V8.24z"/></svg>',
+  pin:'<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>',
+  phone:'<svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.3 2.6 3.4 4.7 6 6l2-2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.1 21 3 13.9 3 5c0-.6.4-1 1-1h3.9c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1l-2 2z"/></svg>'
+};
+
+const TEAMS = [
+  {id:'u8', naam:'U8', nummer:'08', omschrijving:'De allerjongsten maken hier op een speelse manier kennis met basketbal: bal in de hand, plezier voorop.', trainers:['Jonas Verhulst'], assistenten:['Marie De Pauw'], training:'Woensdag 17:00–18:00 · Sporthal Niel', competitie:'Kangoeroe initiatie — Basketbal Vlaanderen', spelers:[
+    {naam:'Finn V.'},{naam:'Loes D.'},{naam:'Ward P.'},{naam:'Noor S.'},{naam:'Mila T.'},{naam:'Seppe K.'}
+  ]},
+  {id:'u10', naam:'U10', nummer:'10', omschrijving:'Eerste stappen richting competitie: basistechnieken, samenspelen en vooral veel goesting in het spelletje.', trainers:['Jonas Verhulst'], assistenten:['Tom Van Loon'], training:'Woensdag 17:00–18:15 · Dinsdag 18:00–19:00 · Sporthal Niel', competitie:'U10 Provinciaal — Basketbal Vlaanderen', spelers:[
+    {naam:'Bram D.'},{naam:'Elise M.'},{naam:'Jarne V.'},{naam:'Fien C.'},{naam:'Robbe H.'},{naam:'Yara B.'},{naam:'Lars N.'}
+  ]},
+  {id:'u12', naam:'U12', nummer:'12', omschrijving:'De ploeg werkt aan balcontrole, schotvorm en teamtactiek in een competitief maar warm ploegkader.', trainers:['Kevin Aerts'], assistenten:['Marie De Pauw'], training:'Maandag 18:00–19:15 · Donderdag 18:00–19:15 · Sporthal Niel', competitie:'U12 Gewestelijk — Basketbal Vlaanderen', spelers:[
+    {naam:'Milan R.'},{naam:'Amber V.'},{naam:'Stan D.'},{naam:'Juna P.'},{naam:'Xander L.'},{naam:'Nore K.'},{naam:'Femke S.'},{naam:'Arno B.'}
+  ]},
+  {id:'u14', naam:'U14', nummer:'14', omschrijving:'Meer intensiteit, meer tactiek: de U14 bouwt verder aan een stevige basketbalbasis richting de hogere jeugdreeksen.', trainers:['Kevin Aerts'], assistenten:['Dries Van Camp'], training:'Maandag 19:15–20:30 · Donderdag 19:15–20:30 · Sporthal Niel', competitie:'U14 Gewestelijk — Basketbal Vlaanderen', spelers:[
+    {naam:'Wout M.'},{naam:'Lotte V.'},{naam:'Timo H.'},{naam:'Silke D.'},{naam:'Baptiste R.'},{naam:'Nette F.'},{naam:'Cas P.'}
+  ]},
+  {id:'u16', naam:'U16', nummer:'16', omschrijving:'Snelheid, kracht en spelinzicht komen samen: de U16 speelt op een ambitieus competitief niveau.', trainers:['Dries Van Camp'], assistenten:['Bo Willems'], training:'Dinsdag 19:00–20:30 · Vrijdag 19:00–20:30 · Sporthal Niel', competitie:'U16 Provinciaal — Basketbal Vlaanderen', spelers:[
+    {naam:'Jarno V.'},{naam:'Hanne D.'},{naam:'Miel S.'},{naam:'Vic B.'},{naam:'Ella R.'},{naam:'Bram T.'},{naam:'Otis K.'},{naam:'Sien M.'}
+  ]},
+  {id:'u18', naam:'U18', nummer:'18', omschrijving:'De laatste jeugdstap voor de A-kern: hoog tempo, veel verantwoordelijkheid en klaarstomen voor het seniorenbasket.', trainers:['Bo Willems'], assistenten:['Kevin Aerts'], training:'Dinsdag 20:30–22:00 · Vrijdag 20:30–22:00 · Sporthal Niel', competitie:'U18 Provinciaal — Basketbal Vlaanderen', spelers:[
+    {naam:'Niels D.'},{naam:'Kato V.'},{naam:'Ruben P.'},{naam:'Isaura B.'},{naam:'Thibo S.'},{naam:'Fleur H.'}
+  ]},
+  {id:'heren-a', naam:'Heren A', nummer:'A1', omschrijving:'Het vlaggenschip van de club: de eerste ploeg strijdt elk weekend voor promotie in de provinciale hoofdreeks.', trainers:['Sam Peeters'], assistenten:['Bo Willems'], training:'Maandag 20:30–22:00 · Woensdag 20:30–22:00 · Sporthal Niel', competitie:'Heren 1e Provinciale — Basketbal Vlaanderen', spelers:[
+    {naam:'Michiel R.'},{naam:'Bavo D.'},{naam:'Tuur V.'},{naam:'Warre S.'},{naam:'Cedric B.'},{naam:'Joran H.'},{naam:'Dries K.'},{naam:'Ferre M.'},{naam:'Niels D.'}
+  ]},
+  {id:'heren-b', naam:'Heren B', nummer:'A2', omschrijving:'Ambitieuze tweede kern met een mix van ervaring en jong talent uit de eigen jeugdwerking.', trainers:['Sam Peeters'], assistenten:['Jonas Verhulst'], training:'Woensdag 20:30–22:00 · Vrijdag 20:30–22:00 · Sporthal Niel', competitie:'Heren 3e Provinciale — Basketbal Vlaanderen', spelers:[
+    {naam:'Wannes P.'},{naam:'Karel S.'},{naam:'Ivo D.'},{naam:'Robin V.'},{naam:'Maxim T.'},{naam:'Yorben L.'}
+  ]},
+  {id:'recreanten', naam:'Recreanten', nummer:'R', omschrijving:'Basketbal zonder druk: recreatief samen sporten, plezier maken en na de training nog een babbel aan de bar.', trainers:['Tom Van Loon'], assistenten:[], training:'Donderdag 20:30–22:00 · Sporthal Niel', competitie:'Recreatieve reeks — vriendschappelijk', spelers:[
+    {naam:'Peter D.'},{naam:'An V.'},{naam:'Luc M.'},{naam:'Kristien B.'},{naam:'Filip R.'}
+  ]}
+];
+
+const NEWS = [
+  {id:1, titel:'Heren A wint spannende topper tegen Boom', datum:'2026-09-14', tag:'Wedstrijdverslag', samenvatting:'In een bomvolle Sporthal Niel haalde de eerste ploeg het nipt met 78-74 na een sterke slotkwart.', inhoud:'In een bomvolle Sporthal Niel haalde de eerste ploeg het nipt met 78-74 na een bijzonder sterke slotkwart. Coach Sam Peeters was na afloop trots op de ingesteldheid van zijn groep: "We hebben tot de laatste seconde doorgezet en dat siert dit team." Volgende week reist Heren A af naar Kontich voor de uitwedstrijd.'},
+  {id:2, titel:'Inschrijvingen jeugdploegen 2026-2027 geopend', datum:'2026-09-08', tag:'Clubnieuws', samenvatting:'Vanaf nu kan je jouw zoon of dochter inschrijven voor het nieuwe basketbalseizoen bij Rupel Pirates.', inhoud:'Het nieuwe seizoen staat voor de deur en we verwelkomen graag nieuwe leden bij al onze jeugdploegen, van U8 tot U18. Inschrijven kan via het contactformulier op deze website of tijdens de opendeurtraining. Nieuwe leden krijgen twee gratis proeftrainingen.'},
+  {id:3, titel:'Rupel Pirates organiseert Piraten Basketbalkamp', datum:'2026-08-20', tag:'Evenement', samenvatting:'Tijdens de herfstvakantie organiseert de club een basketbalkamp voor kinderen van 6 tot 14 jaar.', inhoud:'Tijdens de herfstvakantie organiseert de club een basketbalkamp voor kinderen van 6 tot 14 jaar, met dagelijkse trainingen, toernooitjes en een slotfeest. Inschrijven kan tot 10 oktober via info@rupelpirates.be.'},
+  {id:4, titel:'Nieuwe hoofdsponsor: Bouwbedrijf Van Aert', datum:'2026-08-05', tag:'Sponsors', samenvatting:'We zijn trots om Bouwbedrijf Van Aert te verwelkomen als nieuwe hoofdsponsor voor de komende drie seizoenen.', inhoud:'We zijn trots om Bouwbedrijf Van Aert te verwelkomen als nieuwe hoofdsponsor voor de komende drie seizoenen. Dankzij deze steun kan de club blijven investeren in nieuwe materialen en de jeugdwerking.'},
+  {id:5, titel:'Terugblik: Familiedag en BBQ groot succes', datum:'2026-06-22', tag:'Evenement', samenvatting:'Meer dan 150 leden, ouders en supporters zakten af naar onze jaarlijkse familiedag met BBQ.', inhoud:'Meer dan 150 leden, ouders en supporters zakten af naar onze jaarlijkse familiedag met BBQ, 3-tegen-3 toernooi en prijzenpot. Bedankt aan alle vrijwilligers die hier een top evenement van maakten!'},
+  {id:6, titel:'U16 kroont zich kampioen in de reguliere competitie', datum:'2026-05-30', tag:'Wedstrijdverslag', samenvatting:'Onze U16 sloot een uitstekend seizoen af als leider in de reguliere competitie.', inhoud:'Onze U16 sloot een uitstekend seizoen af als leider in de reguliere competitie, met amper twee verliespartijen over het hele jaar. Een prachtige prestatie van coach Dries Van Camp en zijn groep.'}
+];
+
+const EVENTS = [
+  {datum:'2026-09-21', type:'match', titel:'Heren A — KTV Kontich', team:'heren-a', locatie:'Sporthal Niel (thuis)', tijd:'20:00'},
+  {datum:'2026-09-22', type:'training', titel:'Training U10 & U12', team:'u10', locatie:'Sporthal Niel', tijd:'17:00'},
+  {datum:'2026-09-24', type:'training', titel:'Training U14 & U16', team:'u14', locatie:'Sporthal Niel', tijd:'18:00'},
+  {datum:'2026-09-27', type:'match', titel:'U16 — Basket Boom', team:'u16', locatie:'Sporthal Niel (thuis)', tijd:'16:30'},
+  {datum:'2026-09-28', type:'match', titel:'Heren B — Wilrijk BBC', team:'heren-b', locatie:'Wilrijk (uit)', tijd:'19:30'},
+  {datum:'2026-10-04', type:'tournament', titel:'Piraten 3x3 Jeugdtoernooi', team:'', locatie:'Sporthal Niel', tijd:'10:00'},
+  {datum:'2026-10-11', type:'club', titel:'Opendeurtraining nieuwe leden', team:'', locatie:'Sporthal Niel', tijd:'14:00'},
+  {datum:'2026-10-18', type:'match', titel:'U18 — Basket Hemiksem', team:'u18', locatie:'Sporthal Niel (thuis)', tijd:'18:00'},
+  {datum:'2026-10-25', type:'club', titel:'Herfstvakantie basketbalkamp — start', team:'', locatie:'Sporthal Niel', tijd:'09:00'}
+];
+
+const SPONSORS = {
+  hoofdsponsor:[{naam:'Bouwbedrijf Van Aert'}],
+  goud:[{naam:'Bakkerij De Ridder'},{naam:'Garage Peeters'},{naam:'Café De Toog'}],
+  zilver:[{naam:'Fysio Niel'},{naam:'Immo Rupelstreek'},{naam:'Drukkerij Verstraete'},{naam:'Sportshop Actief'}],
+  partners:[{naam:'Gemeente Niel'},{naam:'Jeugdhuis De Kaai'},{naam:'Optiek Van Dijck'},{naam:'Traiteur De Smet'},{naam:'IT-Partner Nexis'},{naam:'Kinesitherapie Bosmans'}]
+};
+
+const BOARD = [
+  {naam:'Peter Dockx', rol:'Voorzitter'},
+  {naam:'Ann Verstraeten', rol:'Ondervoorzitter'},
+  {naam:'Bart Smeyers', rol:'Penningmeester'},
+  {naam:'Els Van Reeth', rol:'Secretaris'},
+  {naam:'Kevin Aerts', rol:'Sportief coördinator'},
+  {naam:'Marie De Pauw', rol:'Jeugdcoördinator'}
+];
+
+const GALLERY = [
+  {cap:'Heren A — competitiewedstrijd', hue:48},
+  {cap:'Jeugdwerking U10', hue:15},
+  {cap:'Familiedag & BBQ 2026', hue:200},
+  {cap:'U16 kampioenenviering', hue:48},
+  {cap:'Basketbalkamp zomer', hue:340},
+  {cap:'Heren B — training', hue:15},
+  {cap:'Opendeurdag nieuwe leden', hue:200},
+  {cap:'3x3 jeugdtoernooi', hue:48}
+];
+
+/* ------------ helpers ------------ */
+function fmtDate(iso){
+  const d = new Date(iso+'T00:00:00');
+  return d.toLocaleDateString('nl-BE', {day:'numeric', month:'long', year:'numeric'});
+}
+function fmtDateShort(iso){
+  const d = new Date(iso+'T00:00:00');
+  return {day:d.toLocaleDateString('nl-BE',{day:'2-digit'}), mon:d.toLocaleDateString('nl-BE',{month:'short'}).toUpperCase()};
+}
+function initials(name){
+  return name.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
+}
+function esc(s){
+  const d=document.createElement('div'); d.textContent=s; return d.innerHTML;
+}
+function courtIcon(){
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M6 4.5A9 9 0 0112 12 9 9 0 016 19.5M18 4.5A9 9 0 0012 12a9 9 0 006 7.5"/></svg>`;
+}
+function ballSvg(hue, big){
+  const s = big? 400:300;
+  return `<svg viewBox="0 0 ${s} ${s}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${s}" height="${s}" fill="hsl(${hue},70%,14%)"/>
+    <circle cx="${s/2}" cy="${s/2}" r="${s*0.42}" fill="hsl(45,95%,55%)"/>
+    <path d="M${s*0.08} ${s/2} H${s*0.92}" stroke="#111" stroke-width="${s*0.02}"/>
+    <path d="M${s/2} ${s*0.08} V${s*0.92}" stroke="#111" stroke-width="${s*0.02}"/>
+    <path d="M${s*0.18} ${s*0.18} Q${s/2} ${s*0.34} ${s*0.18} ${s*0.82}" stroke="#111" stroke-width="${s*0.02}" fill="none"/>
+    <path d="M${s*0.82} ${s*0.18} Q${s/2} ${s*0.34} ${s*0.82} ${s*0.82}" stroke="#111" stroke-width="${s*0.02}" fill="none"/>
+  </svg>`;
+}
+
+/* ------------ VBL Vlaanderen integration (mock-ready component) ------------ */
+/* Deze module is voorbereid om live data op te halen bij Basketbal Vlaanderen (VBL)
+   voor Rupel Pirates / Coveco BBC Niel. Vul VBL_CONFIG.endpoint in zodra een officiële
+   API- of data-feed beschikbaar is; tot dan toont het component representatieve
+   voorbeelddata zodat de opbouw van de pagina zichtbaar blijft. */
+const VBL_CONFIG = {
+  endpoint: '', // bv. 'https://api.basketbalvlaanderen.be/v1/teams/coveco-bbc-niel'
+  clubs: ['Rupel Pirates', 'Coveco BBC Niel']
+};
+async function fetchVBLStandings(teamId){
+  if(VBL_CONFIG.endpoint){
+    try{
+      const res = await fetch(`${VBL_CONFIG.endpoint}/standings/${teamId}`);
+      if(res.ok){ const data = await res.json(); return {live:true, rows:data}; }
+    }catch(e){ /* val terug op voorbeelddata */ }
+  }
+  return {live:false, rows: MOCK_STANDINGS[teamId] || MOCK_STANDINGS.default};
+}
+const MOCK_STANDINGS = {
+  'heren-a': [
+    {pos:1, team:'BBC Kontich', w:8, l:1, pnt:17},
+    {pos:2, team:'Rupel Pirates', w:7, l:2, pnt:16, self:true},
+    {pos:3, team:'Basket Boom', w:6, l:3, pnt:15},
+    {pos:4, team:'Wilrijk BBC', w:5, l:4, pnt:14},
+    {pos:5, team:'Basket Hemiksem', w:3, l:6, pnt:12}
+  ],
+  default: [
+    {pos:1, team:'Basket Boom', w:9, l:0, pnt:18},
+    {pos:2, team:'Rupel Pirates', w:7, l:2, pnt:16, self:true},
+    {pos:3, team:'Wilrijk BBC', w:6, l:3, pnt:15},
+    {pos:4, team:'BBC Kontich', w:4, l:5, pnt:13},
+    {pos:5, team:'Basket Hemiksem', w:1, l:8, pnt:10}
+  ]
+};
+function renderVBLWidget(teamId, teamNaam){
+  const uid = 'vbl-'+teamId;
+  setTimeout(async ()=>{
+    const box = document.getElementById(uid);
+    if(!box) return;
+    const {live, rows} = await fetchVBLStandings(teamId);
+    box.innerHTML = `
+      <div class="vbl-head">
+        <b>Live rangschikking — Basketbal Vlaanderen</b>
+        <span class="${live?'badge-live':'badge-mock'}">${live? '● Live data' : '● Voorbeelddata'}</span>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>#</th><th>Ploeg</th><th>W</th><th>V</th><th>Pnt</th></tr></thead>
+        <tbody>
+          ${rows.map(r=>`<tr class="${r.self?'highlight':''}"><td>${r.pos}</td><td>${esc(r.team)}</td><td>${r.w}</td><td>${r.l}</td><td>${r.pnt}</td></tr>`).join('')}
+        </tbody>
+      </table></div>
+      <div class="vbl-note">Dit onderdeel is voorbereid om automatisch resultaten, rangschikkingen en ploegkernen op te halen van Basketbal Vlaanderen voor <strong>Rupel Pirates</strong> en <strong>Coveco BBC Niel</strong>. Zodra een officiële databron of API beschikbaar is, verschijnt hier live data in plaats van dit voorbeeld.</div>
+    `;
+  }, 10);
+  return `<div class="vbl-box" id="${uid}"><div class="vbl-head"><b>Live rangschikking — Basketbal Vlaanderen</b><span class="badge-mock">● Laden…</span></div></div>`;
+}
+
+/* ------------ router ------------ */
+const ROUTES = [
+  {path:'/', label:'Home'},
+  {path:'/nieuws', label:'Nieuws'},
+  {path:'/ploegen', label:'Ploegen'},
+  {path:'/kalender', label:'Kalender'},
+  {path:'/fotos', label:"Foto's"},
+  {path:'/sponsors', label:'Sponsors'},
+  {path:'/over-ons', label:'Over Ons'},
+  {path:'/contact', label:'Contact'}
+];
+
+function buildNav(){
+  const active = location.hash.replace('#','') || '/';
+  const topLevel = active.split('/').slice(0,2).join('/') || '/';
+  const list = ROUTES.map(r=>{
+    const isActive = (r.path==='/' ? active==='/' : topLevel.startsWith(r.path));
+    return `<li><a href="#${r.path}" class="${isActive?'active':''}">${r.label}</a></li>`;
+  }).join('');
+  document.getElementById('navList').innerHTML = list;
+  document.getElementById('mobileNavList').innerHTML = list + `<li><a href="#/contact" class="btn btn-primary">Lid worden</a></li>`;
+}
+
+function closeMobileMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+  document.getElementById('hamburgerBtn').setAttribute('aria-expanded','false');
+}
+document.getElementById('hamburgerBtn').addEventListener('click', ()=>{
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburgerBtn');
+  const open = menu.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open?'true':'false');
+});
+
+function router(){
+  closeMobileMenu();
+  const hash = location.hash.replace('#','') || '/';
+  const parts = hash.split('/').filter(Boolean);
+  const app = document.getElementById('main');
+  let html = '';
+  if(parts.length===0){ html = viewHome(); }
+  else if(parts[0]==='nieuws' && parts[1]) html = viewNieuwsDetail(parts[1]);
+  else if(parts[0]==='nieuws') html = viewNieuws();
+  else if(parts[0]==='ploegen' && parts[1]) html = viewPloegDetail(parts[1]);
+  else if(parts[0]==='ploegen') html = viewPloegen();
+  else if(parts[0]==='kalender') html = viewKalender();
+  else if(parts[0]==='fotos') html = viewFotos();
+  else if(parts[0]==='sponsors') html = viewSponsors();
+  else if(parts[0]==='over-ons') html = viewOverOns();
+  else if(parts[0]==='contact') html = viewContact();
+  else html = view404();
+  app.innerHTML = html;
+  buildNav();
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  afterRender(parts);
+}
+
+/* ------------ views ------------ */
+function viewHome(){
+  const latestNews = NEWS.slice(0,3);
+  const upcoming = EVENTS.filter(e=>e.type==='match').slice(0,3);
+  return `
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-net">${courtIcon()}</div>
+    <div class="wrap hero-inner">
+      <div class="reveal">
+        <span class="hero-badge">🏀 Seizoen 2026–2027 nu bezig</span>
+        <h1>Welkom bij <span class="accent">Rupel Pirates</span></h1>
+        <p class="sub">Passie, teamwork en basketbal voor jong en oud.</p>
+        <div class="hero-ctas">
+          <a href="#/contact" class="btn btn-primary">Lid worden</a>
+          <a href="#/contact" class="btn btn-outline" style="color:#fff;">Contacteer ons</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>9</b><span>PLOEGEN</span></div>
+          <div><b>180+</b><span>LEDEN</span></div>
+          <div><b>25</b><span>JAAR ERVARING</span></div>
+        </div>
+      </div>
+      <div class="hero-logo-wrap reveal" style="animation-delay:.15s;">
+        <img src="data:image/jpeg;base64,LOGO_BASE64_PLACEHOLDER" alt="Rupel Pirates logo" class="hero-logo">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-top-row">
+        <div class="section-head" style="margin-bottom:0;">
+          <span class="eyebrow"><span class="dot"></span>LAATSTE NIEUWS</span>
+          <h2>Wat er leeft bij de club</h2>
+        </div>
+        <a href="#/nieuws" class="btn btn-outline btn-sm">Alle nieuws ${ICONS.arrow}</a>
+      </div>
+      <div class="grid grid-3">
+        ${latestNews.map(n=>newsCard(n)).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-top-row">
+        <div class="section-head" style="margin-bottom:0;">
+          <span class="eyebrow"><span class="dot"></span>KOMENDE WEDSTRIJDEN</span>
+          <h2>Kom supporteren</h2>
+        </div>
+        <a href="#/kalender" class="btn btn-outline btn-sm">Volledige kalender ${ICONS.arrow}</a>
+      </div>
+      <div>
+        ${upcoming.map(e=>eventRow(e)).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>ONZE PLOEGEN</span>
+        <h2>Van U8 tot Heren A</h2>
+        <p>Negen ploegen, één piratenfamilie. Klik op een ploeg voor trainers, kalender en rangschikking.</p>
+      </div>
+      <div class="grid grid-4">
+        ${TEAMS.slice(0,4).map(t=>teamCardMini(t)).join('')}
+      </div>
+      <div style="text-align:center;margin-top:34px;">
+        <a href="#/ploegen" class="btn btn-dark">Bekijk alle ploegen ${ICONS.arrow}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>ONZE SPONSORS</span>
+        <h2>Mogelijk gemaakt door</h2>
+      </div>
+      <div class="grid grid-4">
+        ${[...SPONSORS.hoofdsponsor, ...SPONSORS.goud].slice(0,4).map(s=>`<div class="sponsor-logo">${esc(s.naam)}</div>`).join('')}
+      </div>
+      <div style="text-align:center;margin-top:30px;">
+        <a href="#/sponsors" class="btn btn-outline btn-sm">Alle sponsors bekijken ${ICONS.arrow}</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cta-band">
+        <h2>Klaar om lid te worden van de bemanning?</h2>
+        <p>Iedereen is welkom bij Rupel Pirates, van 6 tot 60 jaar. Kom gerust een gratis proeftraining meedoen.</p>
+        <div class="cta-row">
+          <a href="#/contact" class="btn btn-primary">Lid worden</a>
+          <a href="#/ploegen" class="btn btn-outline" style="color:#fff;">Bekijk de ploegen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  `;
+}
+
+function newsCard(n){
+  return `<a href="#/nieuws/${n.id}" class="card news-card">
+    <div class="media" style="background:linear-gradient(135deg, hsl(${(n.id*37)%360},60%,20%), hsl(${(n.id*37+40)%360},55%,10%));">
+      <span class="tag">${esc(n.tag)}</span>
+    </div>
+    <div class="body">
+      <div class="date">${fmtDate(n.datum)}</div>
+      <h3>${esc(n.titel)}</h3>
+      <p>${esc(n.samenvatting)}</p>
+      <span class="read-more">Lees meer ${ICONS.arrow}</span>
+    </div>
+  </a>`;
+}
+
+function eventRow(e){
+  const d = fmtDateShort(e.datum);
+  const typeMap = {match:['type-match','Wedstrijd'], training:['type-training','Training'], club:['type-club','Clubactiviteit'], tournament:['type-tournament','Toernooi']};
+  const [cls,label] = typeMap[e.type];
+  const teamNaam = TEAMS.find(t=>t.id===e.team)?.naam || '';
+  return `<div class="event-row">
+    <div class="event-date-box"><b>${d.day}</b><span>${d.mon}</span></div>
+    <div class="event-info">
+      <h4>${esc(e.titel)}</h4>
+      <div class="meta-line">${e.tijd} uur · ${esc(e.locatie)}${teamNaam? ' · '+teamNaam:''}</div>
+    </div>
+    <span class="event-type ${cls}">${label}</span>
+  </div>`;
+}
+
+function teamCardMini(t){
+  return `<a href="#/ploegen/${t.id}" class="card team-card">
+    <div class="top">
+      <div class="number">${t.nummer}</div>
+      <div class="cat">${esc(t.competitie.split('—')[0].trim())}</div>
+    </div>
+    <div class="bottom"><h3>${esc(t.naam)}</h3></div>
+    <div class="info">
+      <p>${esc(t.omschrijving)}</p>
+      <div class="meta"><span>👤 ${esc(t.trainers[0]||'')}</span></div>
+    </div>
+  </a>`;
+}
+
+function viewNieuws(){
+  return `
+  <section class="hero" style="padding:56px 0 60px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <span class="hero-badge">Clubnieuws</span>
+      <h1>Nieuws</h1>
+      <p class="sub">Alle updates, wedstrijdverslagen en aankondigingen van Rupel Pirates.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="grid grid-3">
+        ${NEWS.map(n=>newsCard(n)).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewNieuwsDetail(id){
+  const n = NEWS.find(x=>String(x.id)===id);
+  if(!n) return view404();
+  const related = NEWS.filter(x=>x.id!==n.id).slice(0,3);
+  return `
+  <section style="padding-top:46px;">
+    <div class="wrap" style="max-width:820px;">
+      <div class="breadcrumb"><a href="#/nieuws">Nieuws</a> / ${esc(n.titel)}</div>
+      <span class="pill">${esc(n.tag)}</span>
+      <h1 style="margin-top:16px;font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);">${esc(n.titel)}</h1>
+      <div class="date" style="margin:14px 0 26px;color:var(--text-soft);font-weight:600;">${fmtDate(n.datum)}</div>
+      <div style="height:280px;border-radius:var(--radius-m);margin-bottom:30px;background:linear-gradient(135deg, hsl(${(n.id*37)%360},60%,20%), hsl(${(n.id*37+40)%360},55%,10%));"></div>
+      <p style="font-size:1.05rem;max-width:70ch;">${esc(n.inhoud)}</p>
+      <a href="#/nieuws" class="btn btn-outline btn-sm" style="margin-top:20px;">&larr; Terug naar nieuws</a>
+    </div>
+  </section>
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head"><h2>Ook interessant</h2></div>
+      <div class="grid grid-3">${related.map(r=>newsCard(r)).join('')}</div>
+    </div>
+  </section>`;
+}
+
+function viewPloegen(){
+  return `
+  <section class="hero" style="padding:56px 0 60px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <span class="hero-badge">Van jeugd tot senioren</span>
+      <h1>Onze Ploegen</h1>
+      <p class="sub">Negen ploegen, van de allerjongste beginners tot Heren A. Klik op een ploeg voor trainers, kalender en rangschikking.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="grid grid-4">
+        ${TEAMS.map(t=>teamCardMini(t)).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewPloegDetail(id){
+  const t = TEAMS.find(x=>x.id===id);
+  if(!t) return view404();
+  const teamEvents = EVENTS.filter(e=>e.team===id);
+  return `
+  <section class="hero" style="padding:50px 0 70px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <div class="breadcrumb" style="color:#b9b6ac;"><a href="#/ploegen" style="color:#e9e7e1;">Ploegen</a> / <span style="color:var(--yellow);">${esc(t.naam)}</span></div>
+      <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+        <div style="width:90px;height:90px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2.1rem;color:var(--ink);flex-shrink:0;">${t.nummer}</div>
+        <div>
+          <h1 style="color:#fff;">${esc(t.naam)}</h1>
+          <p class="sub" style="margin-bottom:0;">${esc(t.competitie)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="grid" style="grid-template-columns:1fr;gap:40px;" >
+        <div style="display:grid;grid-template-columns:1fr;gap:40px;">
+          <div>
+            <h2 style="font-family:'Inter',sans-serif;font-weight:800;font-size:1.5rem;margin-bottom:14px;">Over deze ploeg</h2>
+            <p style="font-size:1rem;max-width:70ch;">${esc(t.omschrijving)}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-3" style="margin-top:10px;">
+        <div class="stat-box">
+          <h3 style="font-family:'Inter',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">Trainers</h3>
+          <p style="margin-bottom:6px;"><strong style="color:var(--text);">Hoofdtrainer:</strong> ${t.trainers.map(esc).join(', ')||'—'}</p>
+          <p style="margin-bottom:0;"><strong style="color:var(--text);">Assistent(en):</strong> ${t.assistenten.map(esc).join(', ')||'—'}</p>
+        </div>
+        <div class="stat-box">
+          <h3 style="font-family:'Inter',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">Trainingsschema</h3>
+          <p style="margin-bottom:0;">${esc(t.training)}</p>
+        </div>
+        <div class="stat-box">
+          <h3 style="font-family:'Inter',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">Competitie</h3>
+          <p style="margin-bottom:0;">${esc(t.competitie)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>SPELERSGROEP</span>
+        <h2>Kern ${esc(t.naam)}</h2>
+      </div>
+      <div class="grid grid-4" style="gap:16px;">
+        ${t.spelers.map(p=>`<div class="player-card"><div class="player-avatar">${initials(p.naam)}</div><b>${esc(p.naam)}</b><span>Speler</span></div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="grid" style="grid-template-columns:1fr;gap:44px;">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow"><span class="dot"></span>WEDSTRIJDKALENDER</span>
+            <h2>Komende wedstrijden</h2>
+          </div>
+          ${teamEvents.length? teamEvents.map(e=>eventRow(e)).join('') : '<p>Momenteel geen geplande wedstrijden bekend voor deze ploeg — check binnenkort opnieuw.</p>'}
+        </div>
+        <div>
+          <div class="section-head">
+            <span class="eyebrow"><span class="dot"></span>BASKETBAL VLAANDEREN</span>
+            <h2>Rangschikking</h2>
+          </div>
+          ${renderVBLWidget(t.id, t.naam)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap" style="text-align:center;">
+      <h2 style="margin-bottom:14px;">Interesse om mee te trainen bij ${esc(t.naam)}?</h2>
+      <p style="max-width:52ch;margin:0 auto 26px;">Neem contact op voor een gratis proeftraining of meer informatie over deze ploeg.</p>
+      <a href="#/contact" class="btn btn-primary">Contacteer ons</a>
+    </div>
+  </section>`;
+}
+
+function viewKalender(){
+  return `
+  <section class="hero" style="padding:56px 0 60px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <span class="hero-badge">Agenda</span>
+      <h1>Kalender</h1>
+      <p class="sub">Wedstrijden, trainingen, toernooien en clubactiviteiten — filter op ploeg.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="filter-row" id="filterRow">
+        <button class="filter-chip active" data-team="alle">Alle ploegen</button>
+        ${TEAMS.map(t=>`<button class="filter-chip" data-team="${t.id}">${esc(t.naam)}</button>`).join('')}
+      </div>
+      <div id="eventList">
+        ${EVENTS.map(e=>eventRow(e)).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewFotos(){
+  return `
+  <section class="hero" style="padding:56px 0 60px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <span class="hero-badge">Beeldbank</span>
+      <h1>Foto's</h1>
+      <p class="sub">Sfeerbeelden van wedstrijden, trainingen en clubmomenten. Klik op een foto voor een groter beeld.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="gallery-grid">
+        ${GALLERY.map((g,i)=>`
+          <div class="gallery-item" data-idx="${i}">
+            ${ballSvg(g.hue)}
+            <div class="cap">${esc(g.cap)}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewSponsors(){
+  const tierBlock = (title, items) => items.length? `
+    <div class="sponsor-tier-title"><h3>${title}</h3><div class="line"></div></div>
+    <div class="grid grid-4">${items.map(s=>`<div class="sponsor-logo">${esc(s.naam)}</div>`).join('')}</div>
+  `:'';
+  return `
+  <section class="hero" style="padding:56px 0 60px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <span class="hero-badge">Partners van de club</span>
+      <h1>Sponsors</h1>
+      <p class="sub">Zonder onze sponsors zou Rupel Pirates niet zijn wie we zijn. Bedankt aan iedereen die onze club steunt.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      ${tierBlock('HOOFDSPONSOR', SPONSORS.hoofdsponsor)}
+      ${tierBlock('GOUDEN SPONSORS', SPONSORS.goud)}
+      ${tierBlock('ZILVEREN SPONSORS', SPONSORS.zilver)}
+      ${tierBlock('PARTNERS', SPONSORS.partners)}
+      <div class="cta-band" style="margin-top:60px;">
+        <h2>Zelf ook sponsor worden?</h2>
+        <p>Steun Rupel Pirates en geniet van zichtbaarheid bij honderden leden, ouders en supporters uit de regio.</p>
+        <div class="cta-row"><a href="#/contact" class="btn btn-primary">Word sponsor</a></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewOverOns(){
+  return `
+  <section class="hero" style="padding:56px 0 60px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <span class="hero-badge">Sinds jaar en dag in Niel</span>
+      <h1>Over Ons</h1>
+      <p class="sub">Het verhaal, de missie en de mensen achter Rupel Pirates Basketball Club.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>ONZE GESCHIEDENIS</span>
+        <h2>Van buurtploeg tot piratenbemanning</h2>
+      </div>
+      <p style="font-size:1.02rem;max-width:72ch;">Rupel Pirates, in de volksmond nog steeds gekend als BBC Niel, groeide uit van een kleine buurtploeg tot een volwaardige basketbalclub met negen ploegen en meer dan 180 leden. Wat begon op een buitenpleintje in Niel, speelt vandaag competitie doorheen de hele provincie — met dezelfde piratengeest van samenhorigheid die de club vanaf dag één kenmerkte.</p>
+      <p style="font-size:1.02rem;max-width:72ch;">Onze jeugdwerking is het kloppend hart van de club: van U8 tot U18 begeleiden we spelers stap voor stap, met als doel dat iedereen die dat wil kan doorstromen naar de seniorenploegen — Heren A en Heren B.</p>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>MISSIE & WAARDEN</span>
+        <h2>Waar wij voor staan</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="value-card">
+          <div class="icn">${courtIcon()}</div>
+          <h3 style="font-family:'Inter',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:8px;">Teamwork</h3>
+          <p>Basketbal is een teamsport in hart en nieren — we winnen en verliezen samen, op en naast het veld.</p>
+        </div>
+        <div class="value-card">
+          <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.2 4 2 0-.8 2-2 4-2 4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
+          <h3 style="font-family:'Inter',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:8px;">Passie</h3>
+          <p>Van U8 tot Heren A: iedereen speelt met dezelfde goesting en inzet, elke training opnieuw.</p>
+        </div>
+        <div class="value-card">
+          <div class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M10 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h3 style="font-family:'Inter',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:8px;">Gemeenschap</h3>
+          <p>Een club is meer dan een team: het zijn de ouders, vrijwilligers en supporters die er samen iets moois van maken.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow"><span class="dot"></span>BESTUUR</span>
+        <h2>Het clubbestuur</h2>
+      </div>
+      <div class="grid grid-3">
+        ${BOARD.map(b=>`<div class="board-card"><div class="board-avatar">${initials(b.naam)}</div><div><b>${esc(b.naam)}</b><span>${esc(b.rol)}</span></div></div>`).join('')}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="cta-band" style="background:var(--ink);">
+        <h2>Vrijwilliger worden?</h2>
+        <p>Onze club draait grotendeels op vrijwilligers: van trainer tot tafelfunctie op wedstrijddagen. Elke helpende hand is welkom.</p>
+        <div class="cta-row"><a href="#/contact" class="btn btn-primary">Meld je aan</a></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewContact(){
+  return `
+  <section class="hero" style="padding:56px 0 60px;">
+    <div class="hero-bg"></div>
+    <div class="wrap">
+      <span class="hero-badge">We horen graag van je</span>
+      <h1>Contact</h1>
+      <p class="sub">Vragen over lidmaatschap, sponsoring of vrijwilligerswerk? Laat het ons weten.</p>
+    </div>
+  </section>
+  <section>
+    <div class="wrap">
+      <div class="grid" style="grid-template-columns:1fr;gap:50px;">
+        <div style="display:grid;grid-template-columns:1fr;gap:50px;">
+          <div style="max-width:640px;">
+            <div class="success-box" id="successBox">Bedankt! Je bericht werd verzonden. We nemen zo snel mogelijk contact met je op.</div>
+            <form id="contactForm" novalidate>
+              <div class="grid grid-3" style="gap:18px;">
+                <div class="form-field" id="f-naam">
+                  <label for="naam">Naam *</label>
+                  <input type="text" id="naam" name="naam">
+                  <span class="error-text">Vul je naam in.</span>
+                </div>
+                <div class="form-field" id="f-email">
+                  <label for="email">E-mail *</label>
+                  <input type="email" id="email" name="email">
+                  <span class="error-text">Vul een geldig e-mailadres in.</span>
+                </div>
+                <div class="form-field" id="f-onderwerp">
+                  <label for="onderwerp">Onderwerp</label>
+                  <select id="onderwerp" name="onderwerp">
+                    <option>Lidmaatschap</option>
+                    <option>Sponsoring</option>
+                    <option>Vrijwilligerswerk</option>
+                    <option>Pers / media</option>
+                    <option>Andere vraag</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-field" id="f-bericht">
+                <label for="bericht">Bericht *</label>
+                <textarea id="bericht" name="bericht"></textarea>
+                <span class="error-text">Laat ons weten waarmee we kunnen helpen.</span>
+              </div>
+              <button type="submit" class="btn btn-primary">Bericht versturen</button>
+            </form>
+          </div>
+
+          <div>
+            <div class="contact-info-item">
+              <div class="icon">${ICONS.pin}</div>
+              <div><strong>Sporthal Niel</strong><br><span style="color:var(--text-soft);">Sportlaan 1, 2845 Niel, België</span></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="icon">${ICONS.mail}</div>
+              <div><strong>E-mail</strong><br><a href="mailto:info@rupelpirates.be" style="color:var(--text-soft);">info@rupelpirates.be</a></div>
+            </div>
+            <div class="contact-info-item">
+              <div class="icon">${ICONS.phone}</div>
+              <div><strong>Telefoon</strong><br><a href="tel:+3238880000" style="color:var(--text-soft);">03 888 00 00</a></div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Sporthal+Niel+Sportlaan+1+2845+Niel" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="margin-top:6px;">Open in Google Maps ${ICONS.arrow}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function view404(){
+  return `<section style="padding:120px 0;text-align:center;">
+    <div class="wrap">
+      <h1>404</h1>
+      <p>Deze pagina bestaat niet (meer).</p>
+      <a href="#/" class="btn btn-primary">Terug naar home</a>
+    </div>
+  </section>`;
+}
+
+/* ------------ post-render behaviour ------------ */
+function afterRender(parts){
+  // reveal animation stagger for hero elements already handled via CSS
+
+  // kalender filter
+  const filterRow = document.getElementById('filterRow');
+  if(filterRow){
+    filterRow.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.filter-chip');
+      if(!btn) return;
+      filterRow.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+      btn.classList.add('active');
+      const team = btn.dataset.team;
+      const list = team==='alle'? EVENTS : EVENTS.filter(e=>e.team===team);
+      document.getElementById('eventList').innerHTML = list.length? list.map(e=>eventRow(e)).join('') : '<p>Geen events gevonden voor deze selectie.</p>';
+    });
+  }
+
+  // gallery lightbox
+  document.querySelectorAll('.gallery-item').forEach(item=>{
+    item.addEventListener('click', ()=>{
+      const idx = +item.dataset.idx;
+      const g = GALLERY[idx];
+      document.getElementById('lightboxContent').innerHTML = ballSvg(g.hue, true);
+      document.getElementById('lightboxCap').textContent = g.cap;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+
+  // contact form
+  const form = document.getElementById('contactForm');
+  if(form){
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      let valid = true;
+      const fields = [
+        {id:'f-naam', el:'naam', check:v=>v.trim().length>1},
+        {id:'f-email', el:'email', check:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+        {id:'f-bericht', el:'bericht', check:v=>v.trim().length>4}
+      ];
+      fields.forEach(f=>{
+        const input = document.getElementById(f.el);
+        const wrap = document.getElementById(f.id);
+        if(!f.check(input.value)){ wrap.classList.add('invalid'); valid=false; }
+        else wrap.classList.remove('invalid');
+      });
+      if(valid){
+        document.getElementById('successBox').classList.add('show');
+        form.reset();
+        document.getElementById('successBox').scrollIntoView({behavior:'smooth', block:'center'});
+      }
+    });
+  }
+}
+
+document.getElementById('lightboxClose').addEventListener('click', ()=>{
+  document.getElementById('lightbox').classList.remove('open');
+});
+document.getElementById('lightbox').addEventListener('click', (e)=>{
+  if(e.target.id==='lightbox') document.getElementById('lightbox').classList.remove('open');
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape') document.getElementById('lightbox').classList.remove('open');
+});
+
+window.addEventListener('hashchange', router);
+window.addEventListener('DOMContentLoaded', router);
+router();
+</script>
+</body>
+</html>
