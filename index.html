@@ -688,7 +688,11 @@ let STANDINGS_DATA = null;
 let STANDINGS_PROMISE = null;
 function loadStandings(){
   if(!STANDINGS_PROMISE){
-    STANDINGS_PROMISE = fetch('./data.json', {cache:'no-store'})
+    // Cache-buster in de query-string: {cache:'no-store'} voorkomt enkel dat de
+    // BROWSER zijn eigen cache gebruikt — een CDN (Cloudflare) kan data.json
+    // daarnaast nog los cachen. Een unieke query-param per paginabezoek dwingt
+    // altijd een verse fetch af, ook vlak na een nieuwe scrape-run.
+    STANDINGS_PROMISE = fetch('./data.json?t=' + Date.now(), {cache:'no-store'})
       .then(r => r.ok ? r.json() : null)
       .then(d => { STANDINGS_DATA = d; return d; })
       .catch(() => { STANDINGS_DATA = null; return null; });
