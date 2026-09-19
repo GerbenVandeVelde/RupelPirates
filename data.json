@@ -513,16 +513,6 @@
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g14-a",
     "matches": [
       {
-        "datum": "19/09/2026",
-        "tijd": "13:30",
-        "thuisploeg": "Geranimo Bornem Basket G14 A",
-        "uitploeg": "Rupel Pirates BBC Niel G14 A",
-        "locatie": "Sporthal Breeven",
-        "locatie_url": "https://www.google.com/maps/search/?api=1&query=Sporthal%20Breeven",
-        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441AEAF",
-        "datetime_iso": "2026-09-19T13:30:00"
-      },
-      {
         "datum": "26/09/2026",
         "tijd": "15:00",
         "thuisploeg": "Duffel K.B.B.C. G14 A",
@@ -591,6 +581,16 @@
         "locatie_url": "https://www.google.com/maps/search/?api=1&query=Gemeentelijke%20Sporthal%20Niel",
         "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441AEFD",
         "datetime_iso": "2026-11-07T11:00:00"
+      },
+      {
+        "datum": "14/11/2026",
+        "tijd": "11:00",
+        "thuisploeg": "Rupel Pirates BBC Niel G14 A",
+        "uitploeg": "Duffel K.B.B.C. G14 A",
+        "locatie": "Gemeentelijke Sporthal Niel",
+        "locatie_url": "https://www.google.com/maps/search/?api=1&query=Gemeentelijke%20Sporthal%20Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1441AEFC",
+        "datetime_iso": "2026-11-14T11:00:00"
       }
     ],
     "standings": [
@@ -608,75 +608,75 @@
       ],
       [
         "1",
-        "Rupel Pirates BBC Niel G14 A",
-        "1",
-        "1",
+        "Basket Groot Zemst G14 A",
+        "2",
+        "2",
         "0",
         "0",
         "0",
-        "3",
-        "68",
-        "27"
+        "6",
+        "120",
+        "75"
       ],
       [
         "2",
-        "Basket Groot Zemst G14 A",
-        "1",
-        "1",
+        "Geranimo Bornem Basket G14 A",
+        "2",
+        "2",
         "0",
         "0",
         "0",
-        "3",
-        "52",
-        "42"
+        "6",
+        "119",
+        "103"
       ],
       [
         "3",
-        "Geranimo Bornem Basket G14 A",
+        "Rupel Pirates BBC Niel G14 A",
+        "2",
         "1",
+        "0",
         "1",
         "0",
-        "0",
-        "0",
-        "3",
-        "63",
-        "58"
+        "4",
+        "113",
+        "83"
       ],
       [
         "4",
-        "Duffel K.B.B.C. G14 A",
+        "Telstar B.B.C. Mechelen G14 A",
+        "2",
         "1",
         "0",
-        "0",
         "1",
         "0",
-        "1",
-        "58",
-        "63"
+        "4",
+        "98",
+        "100"
       ],
       [
         "5",
-        "Telstar B.B.C. Mechelen G14 A",
-        "1",
+        "Duffel K.B.B.C. G14 A",
+        "2",
         "0",
         "0",
-        "1",
+        "2",
         "0",
-        "1",
-        "42",
-        "52"
+        "2",
+        "106",
+        "119"
       ],
       [
         "6",
         "Londerzeelse Dunkers G14 A",
-        "1",
+        "2",
         "0",
         "0",
-        "1",
+        "2",
         "0",
-        "1",
-        "27",
-        "68"
+        "2",
+        "60",
+        "136"
       ]
     ]
   },
@@ -779,6 +779,18 @@
       ],
       [
         "1",
+        "BBC Makeba Mariaburg Brasschaat G14 A",
+        "2",
+        "2",
+        "0",
+        "0",
+        "0",
+        "6",
+        "142",
+        "70"
+      ],
+      [
+        "2",
         "Koninklijke Sint-Niklase Condors G14 B",
         "1",
         "1",
@@ -790,19 +802,19 @@
         "35"
       ],
       [
-        "2",
-        "BBC Makeba Mariaburg Brasschaat G14 A",
-        "1",
-        "1",
-        "0",
-        "0",
-        "0",
         "3",
-        "72",
-        "43"
+        "Mercurius BBC Hoboken-Berchem G14 B",
+        "2",
+        "0",
+        "0",
+        "2",
+        "0",
+        "2",
+        "62",
+        "150"
       ],
       [
-        "3",
+        "4",
         "Mercurius BBC Hoboken-Berchem G14 C",
         "1",
         "0",
@@ -812,18 +824,6 @@
         "1",
         "43",
         "72"
-      ],
-      [
-        "4",
-        "Mercurius BBC Hoboken-Berchem G14 B",
-        "1",
-        "0",
-        "0",
-        "1",
-        "0",
-        "1",
-        "35",
-        "80"
       ],
       [
         "5",
@@ -1038,16 +1038,6 @@
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-g12-b",
     "matches": [
       {
-        "datum": "19/09/2026",
-        "tijd": "12:00",
-        "thuisploeg": "Aartselaar BBC G12 B",
-        "uitploeg": "Rupel Pirates BBC Niel G12 B",
-        "locatie": "Sporthal De Twee Ringen",
-        "locatie_url": "https://www.google.com/maps/search/?api=1&query=Sporthal%20De%20Twee%20Ringen",
-        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241NEB",
-        "datetime_iso": "2026-09-19T12:00:00"
-      },
-      {
         "datum": "26/09/2026",
         "tijd": "11:00",
         "thuisploeg": "Rupel Pirates BBC Niel G12 B",
@@ -1116,6 +1106,16 @@
         "locatie_url": "https://www.google.com/maps/search/?api=1&query=Gemeentelijke%20Sporthal%20Sint-Amands",
         "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241NGB",
         "datetime_iso": "2026-11-28T09:15:00"
+      },
+      {
+        "datum": "13/12/2026",
+        "tijd": "11:00",
+        "thuisploeg": "Basket Willebroek G12 C",
+        "uitploeg": "Rupel Pirates BBC Niel G12 B",
+        "locatie": "Sporthal de Schalk (NIEUW)",
+        "locatie_url": "https://www.google.com/maps/search/?api=1&query=Sporthal%20de%20Schalk%20%28NIEUW%29",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170ING1241NAB",
+        "datetime_iso": "2026-12-13T11:00:00"
       }
     ],
     "standings": [
@@ -1563,16 +1563,6 @@
     "url": "https://www.basketbal.vlaanderen/resultaten/bbc-coveco-niel/bbc-coveco-niel-j18-a",
     "matches": [
       {
-        "datum": "19/09/2026",
-        "tijd": "13:00",
-        "thuisploeg": "Rupel Pirates BBC Niel J18 A",
-        "uitploeg": "Basket Willebroek J18 B",
-        "locatie": "Gemeentelijke Sporthal Niel",
-        "locatie_url": "https://www.google.com/maps/search/?api=1&query=Gemeentelijke%20Sporthal%20Niel",
-        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170INJ1841FDC",
-        "datetime_iso": "2026-09-19T13:00:00"
-      },
-      {
         "datum": "26/09/2026",
         "tijd": "13:00",
         "thuisploeg": "Rupel Pirates BBC Niel J18 A",
@@ -1641,6 +1631,16 @@
         "locatie_url": "https://www.google.com/maps/search/?api=1&query=Buurtcentrum%20Cortina",
         "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170INJ1841FED",
         "datetime_iso": "2026-11-15T12:30:00"
+      },
+      {
+        "datum": "21/11/2026",
+        "tijd": "13:00",
+        "thuisploeg": "Rupel Pirates BBC Niel J18 A",
+        "uitploeg": "Sobabee Bazel@Den Draver J18 D",
+        "locatie": "Gemeentelijke Sporthal Niel",
+        "locatie_url": "https://www.google.com/maps/search/?api=1&query=Gemeentelijke%20Sporthal%20Niel",
+        "formulier_url": "https://vblweb.wisseq.eu/Home/MatchDetail?wedguid=BVBL26279170INJ1841FDA",
+        "datetime_iso": "2026-11-21T13:00:00"
       }
     ],
     "standings": [
@@ -1658,6 +1658,30 @@
       ],
       [
         "1",
+        "Basics Melsele-Beveren J18 C",
+        "2",
+        "2",
+        "0",
+        "0",
+        "0",
+        "6",
+        "106",
+        "73"
+      ],
+      [
+        "2",
+        "Rupel Pirates BBC Niel J18 A",
+        "2",
+        "1",
+        "0",
+        "1",
+        "0",
+        "4",
+        "148",
+        "87"
+      ],
+      [
+        "3",
         "Mercurius BBC Hoboken-Berchem J18 C",
         "1",
         "1",
@@ -1669,7 +1693,7 @@
         "25"
       ],
       [
-        "2",
+        "4",
         "Sobabee Bazel@Den Draver J18 D",
         "1",
         "1",
@@ -1681,57 +1705,33 @@
         "34"
       ],
       [
-        "3",
-        "Basics Melsele-Beveren J18 C",
-        "1",
-        "1",
-        "0",
-        "0",
-        "0",
-        "3",
-        "48",
-        "44"
-      ],
-      [
-        "4",
-        "Rupel Pirates BBC Niel J18 A",
-        "1",
-        "0",
-        "0",
-        "1",
-        "0",
-        "1",
-        "44",
-        "48"
-      ],
-      [
         "5",
-        "Basket Willebroek J18 B",
-        "1",
+        "Willibies Antwerpen J18 C",
+        "2",
         "0",
         "0",
-        "1",
+        "2",
         "0",
-        "1",
-        "34",
-        "93"
+        "2",
+        "54",
+        "139"
       ],
       [
         "6",
-        "Willibies Antwerpen J18 C",
-        "1",
+        "Basket Willebroek J18 B",
+        "2",
         "0",
         "0",
-        "1",
+        "2",
         "0",
-        "1",
-        "25",
-        "81"
+        "2",
+        "73",
+        "197"
       ]
     ]
   },
   "_meta": {
-    "generated_at": "2026-09-19T09:47:33+00:00",
+    "generated_at": "2026-09-19T14:52:18+00:00",
     "team_count": 9,
     "failed_teams": [
       "BBC Coveco Niel J16 A",
