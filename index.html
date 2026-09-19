@@ -592,16 +592,11 @@ const NEWS = [
   {id:6, titel:'J16 A kroont zich kampioen in de reguliere competitie', datum:'2026-05-30', tag:'Wedstrijdverslag', samenvatting:'Onze J16 A sloot een uitstekend seizoen af als leider in de reguliere competitie.', inhoud:'Onze J16 A sloot een uitstekend seizoen af als leider in de reguliere competitie, met amper twee verliespartijen over het hele jaar. Een prachtige prestatie van de trainersstaf en de groep.'}
 ];
 
+/* EVENTS is voortaan enkel nog voor clubactiviteiten die niet op Basketbal Vlaanderen
+   staan (trainingen, opendeurdagen, toernooien, ...) — die kan niemand scrapen, dus
+   vul je die hier zelf manueel aan wanneer je ze wil tonen. Alle wedstrijden komen
+   automatisch en actueel uit data.json (zie renderKalenderList/renderHomeUpcoming). */
 const EVENTS = [
-  {datum:'2026-09-21', type:'match', titel:'HSE A — KTV Kontich', team:'hse-a', locatie:'Sporthal Niel (thuis)', tijd:'20:00'},
-  {datum:'2026-09-22', type:'training', titel:'Training G10 & G12', team:'g10-a', locatie:'Sporthal Niel', tijd:'17:00'},
-  {datum:'2026-09-24', type:'training', titel:'Training G14 & J16', team:'g14-a', locatie:'Sporthal Niel', tijd:'18:00'},
-  {datum:'2026-09-27', type:'match', titel:'J16 A — Basket Boom', team:'j16-a', locatie:'Sporthal Niel (thuis)', tijd:'16:30'},
-  {datum:'2026-09-28', type:'match', titel:'HSE B — Wilrijk BBC', team:'hse-b', locatie:'Wilrijk (uit)', tijd:'19:30'},
-  {datum:'2026-10-04', type:'tournament', titel:'Piraten 3x3 Jeugdtoernooi', team:'', locatie:'Sporthal Niel', tijd:'10:00'},
-  {datum:'2026-10-11', type:'club', titel:'Opendeurtraining nieuwe leden', team:'', locatie:'Sporthal Niel', tijd:'14:00'},
-  {datum:'2026-10-18', type:'match', titel:'J18 A — Basket Hemiksem', team:'j18-a', locatie:'Sporthal Niel (thuis)', tijd:'18:00'},
-  {datum:'2026-10-25', type:'club', titel:'Herfstvakantie basketbalkamp — start', team:'', locatie:'Sporthal Niel', tijd:'09:00'}
 ];
 
 const SPONSORS = {
@@ -819,7 +814,6 @@ function router(){
 /* ------------ views ------------ */
 function viewHome(){
   const latestNews = NEWS.slice(0,3);
-  const upcoming = EVENTS.filter(e=>e.type==='match').slice(0,3);
   return `
   <section class="hero">
     <div class="hero-bg"></div>
@@ -834,7 +828,7 @@ function viewHome(){
           <a href="#/contact" class="btn btn-outline" style="color:#fff;">Contacteer ons</a>
         </div>
         <div class="hero-stats">
-          <div><b>11</b><span>PLOEGEN</span></div>
+          <div><b>9</b><span>PLOEGEN</span></div>
           <div><b>180+</b><span>LEDEN</span></div>
           <div><b>25</b><span>JAAR ERVARING</span></div>
         </div>
@@ -870,7 +864,7 @@ function viewHome(){
         <a href="#/kalender" class="btn btn-outline btn-sm">Volledige kalender ${ICONS.arrow}</a>
       </div>
       <div>
-        ${upcoming.map(e=>eventRow(e)).join('')}
+        ${renderHomeUpcoming()}
       </div>
     </div>
   </section>
@@ -973,6 +967,56 @@ function renderMatchesBox(t){
     box.innerHTML = (matches && matches.length)
       ? matches.map(m => matchRow(m, t.naam)).join('')
       : '<p>Momenteel geen geplande wedstrijden bekend voor deze ploeg — check binnenkort opnieuw.</p>';
+  });
+  return `<div id="${uid}"><p>Wedstrijden laden…</p></div>`;
+}
+
+function allUpcomingMatches(){
+  if(!STANDINGS_DATA) return [];
+  const list = [];
+  TEAMS.forEach(t => {
+    const key = findStandingsKey(t);
+    const matches = key ? STANDINGS_DATA[key].matches : null;
+    if(matches) matches.forEach(m => list.push(Object.assign({}, m, {_team: t})));
+  });
+  list.sort((a, b) => (a.datetime_iso || '').localeCompare(b.datetime_iso || ''));
+  return list;
+}
+
+function combinedAgendaHtml(teamFilter){
+  const items = [];
+  allUpcomingMatches().forEach(m => {
+    if(teamFilter && teamFilter !== 'alle' && m._team.id !== teamFilter) return;
+    items.push({sortKey: m.datetime_iso || '', html: matchRow(m, m._team.naam)});
+  });
+  EVENTS.forEach(e => {
+    if(teamFilter && teamFilter !== 'alle' && e.team !== teamFilter) return;
+    items.push({sortKey: e.datum + 'T' + (e.tijd || '00:00') + ':00', html: eventRow(e)});
+  });
+  items.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+  return items.length ? items.map(i => i.html).join('') : '<p>Geen events gevonden voor deze selectie.</p>';
+}
+
+function renderKalenderList(){
+  const uid = 'eventList';
+  loadStandings().then(() => {
+    const box = document.getElementById(uid);
+    if(!box) return; // gebruiker is al naar een andere pagina genavigeerd
+    const activeChip = document.querySelector('#filterRow .filter-chip.active');
+    box.innerHTML = combinedAgendaHtml(activeChip ? activeChip.dataset.team : 'alle');
+  });
+  return `<div id="${uid}"><p>Wedstrijden laden…</p></div>`;
+}
+
+function renderHomeUpcoming(){
+  const uid = 'home-upcoming';
+  loadStandings().then(() => {
+    const box = document.getElementById(uid);
+    if(!box) return;
+    const matches = allUpcomingMatches().slice(0, 3);
+    box.innerHTML = matches.length
+      ? matches.map(m => matchRow(m, m._team.naam)).join('')
+      : '<p>Geen geplande wedstrijden gevonden — check binnenkort opnieuw.</p>';
   });
   return `<div id="${uid}"><p>Wedstrijden laden…</p></div>`;
 }
@@ -1174,9 +1218,7 @@ function viewKalender(){
         <button class="filter-chip active" data-team="alle">Alle ploegen</button>
         ${TEAMS.map(t=>`<button class="filter-chip" data-team="${t.id}">${esc(t.naam)}</button>`).join('')}
       </div>
-      <div id="eventList">
-        ${EVENTS.map(e=>eventRow(e)).join('')}
-      </div>
+      ${renderKalenderList()}
     </div>
   </section>`;
 }
@@ -1396,8 +1438,9 @@ function afterRender(parts){
       filterRow.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
       btn.classList.add('active');
       const team = btn.dataset.team;
-      const list = team==='alle'? EVENTS : EVENTS.filter(e=>e.team===team);
-      document.getElementById('eventList').innerHTML = list.length? list.map(e=>eventRow(e)).join('') : '<p>Geen events gevonden voor deze selectie.</p>';
+      loadStandings().then(() => {
+        document.getElementById('eventList').innerHTML = combinedAgendaHtml(team);
+      });
     });
   }
 
